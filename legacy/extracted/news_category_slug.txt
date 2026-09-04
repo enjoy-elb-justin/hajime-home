@@ -1,0 +1,51 @@
+# /news/category/:slug
+uuid: 58859e24-82ed-4e56-94e6-6682d282f98e
+
+## Text
+全て
+
+{{title}}
+
+{{$fn.formatDate(_meta.publishedAt,'YYYY.MM.DD')}}
+
+{{gJdy0mSV.title}}
+
+{{title}}
+
+もっと見る
+
+## State / CMS bindings
+業務分野
+
+Company
+
+#fv
+
+News
+
+お知らせ
+
+#創業支援
+
+/faq#startup
+
+#税務・会計
+
+/faq#accounting
+
+#相続・事業継承
+
+/faq#inheritance
+
+#ご契約・その他
+
+/faq#general
+
+Hello World
+
+## Links
+- #fv
+- /news
+- /faq
+- /news/category/{{slug}}
+- /news/{{slug}}

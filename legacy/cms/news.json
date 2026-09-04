@@ -1,0 +1,131 @@
+[
+  {
+    "id": "6oWlvJiv2UlwpqM6IPbg",
+    "_filter": [
+      "gJdy0mSV:EspzmpMT"
+    ],
+    "_meta": {
+      "uid": "LQ6qqGjT",
+      "updatedAt": "2026-06-25T13:42:47+00:00",
+      "createdAt": "2024-03-06T02:17:59+00:00",
+      "publishedAt": "2026-06-08T12:47:00+00:00",
+      "project": {
+        "id": "bdec933c73ef4affaa19"
+      },
+      "publishType": "change",
+      "schema": {
+        "key": "HVU3Uq4y",
+        "id": "WCUrSwvbUblrc8kjcgxf",
+        "postType": "post"
+      },
+      "order": 8,
+      "audit": {
+        "createdAt": "2024-03-06T02:17:59+00:00",
+        "publishedAt": "2026-06-25T13:42:55+00:00",
+        "unPublishedAt": "2024-03-06T03:48:22+00:00",
+        "updatedAt": "2024-03-06T02:17:59+00:00"
+      }
+    },
+    "default": {
+      "title": "ホームページを公開しました",
+      "slug": "20230306",
+      "body": "<p data-uid=\"EbIqQeYc\" data-time=\"1782394966690\">このたび、当社ホームページを公開いたしました。サービス情報や最新のお知らせを随時発信してまいります。</p>"
+    }
+  },
+  {
+    "id": "NffmbgyFVwRW8CZjZSU7",
+    "_filter": [
+      "gJdy0mSV:EspzmpMT"
+    ],
+    "_meta": {
+      "uid": "GSZGoHxy",
+      "schema": {
+        "postType": "post",
+        "key": "HVU3Uq4y",
+        "id": "WCUrSwvbUblrc8kjcgxf"
+      },
+      "createdAt": "2024-03-06T03:44:56+00:00",
+      "project": {
+        "id": "bdec933c73ef4affaa19"
+      },
+      "order": 7,
+      "publishType": "change",
+      "updatedAt": "2026-06-30T00:37:03+00:00",
+      "audit": {
+        "createdAt": "2024-03-06T03:44:56+00:00",
+        "updatedAt": "2024-03-06T03:44:56+00:00",
+        "publishedAt": "2026-06-30T00:37:57+00:00"
+      },
+      "publishedAt": "2026-04-15T12:47:00+00:00"
+    },
+    "default": {
+      "body": "<p data-uid=\"EbIqQeYc\" data-time=\"1782779823082\">企業様のニーズに応じたカスタマイズ研修の提供を開始しました。現場課題に即した内容で、トラブル防止と定着支援を行います。</p>",
+      "slug": "cQWrIPXm",
+      "title": "外国人材受け入れ企業向け研修プログラムを拡充しました"
+    }
+  },
+  {
+    "id": "g2kwgMi4fbH6FTeVKpYR",
+    "_filter": [
+      "gJdy0mSV:EspzmpMT"
+    ],
+    "_meta": {
+      "createdAt": "2024-03-06T03:28:13+00:00",
+      "publishType": "change",
+      "publishedAt": "2026-03-24T12:48:00+00:00",
+      "project": {
+        "id": "bdec933c73ef4affaa19"
+      },
+      "uid": "FuszshuG",
+      "updatedAt": "2026-06-25T13:44:08+00:00",
+      "schema": {
+        "id": "WCUrSwvbUblrc8kjcgxf",
+        "key": "HVU3Uq4y",
+        "postType": "post"
+      },
+      "audit": {
+        "createdAt": "2024-03-06T03:28:13+00:00",
+        "publishedAt": "2026-06-25T13:44:14+00:00",
+        "updatedAt": "2024-03-06T03:28:13+00:00"
+      },
+      "order": 6
+    },
+    "default": {
+      "title": "在日経営者向けセミナーを開催しました",
+      "body": "<p data-uid=\"EbIqQeYc\" data-time=\"1782395047851\">在日外国人経営者の方々を対象に、日本の商習慣やリスク管理に関するセミナーを開催いたしました。今後の事業運営に役立つ内容としてご好評をいただきました。</p>",
+      "slug": "DPBOUagc"
+    }
+  },
+  {
+    "id": "VnCU7JAK78MqUq6PbHSV",
+    "_filter": [
+      "gJdy0mSV:EspzmpMT"
+    ],
+    "_meta": {
+      "uid": "BvoyBUJW",
+      "updatedAt": "2026-06-25T13:44:32+00:00",
+      "createdAt": "2026-05-30T13:12:16+00:00",
+      "publishedAt": "2026-03-09T13:12:00+00:00",
+      "project": {
+        "id": "bdec933c73ef4affaa19"
+      },
+      "publishType": "change",
+      "schema": {
+        "postType": "post",
+        "id": "WCUrSwvbUblrc8kjcgxf",
+        "key": "HVU3Uq4y"
+      },
+      "order": -1,
+      "audit": {
+        "updatedAt": "2026-05-30T13:12:16+00:00",
+        "publishedAt": "2026-06-25T13:44:50+00:00",
+        "createdAt": "2026-05-30T13:12:16+00:00"
+      }
+    },
+    "default": {
+      "title": "外国人向けビジネスマナー研修を実施しました",
+      "slug": "ge4vL_oG",
+      "body": "<p data-uid=\"Wiq9bTqY\" data-time=\"1782395071858\">A社にて、日本で働く外国人スタッフを対象としたマナー研修を実施いたしました。 挨拶、名刺交換、報連相など、現場で必要な内容を中心に実践的にお伝えしました。</p>"
+    }
+  }
+]

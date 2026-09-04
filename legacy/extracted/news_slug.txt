@@ -1,0 +1,18 @@
+# /news/:slug
+uuid: 366acb96-ff3f-4779-a54e-92f7cffc9bb3
+
+## Text
+{{title}}
+
+{{gJdy0mSV.title}}
+
+{{$fn.formatDate(_meta.publishedAt,'YYYY.M.D')}}
+
+## State / CMS bindings
+お知らせ一覧を見る
+
+/news
+
+## Links
+- /news/category/{{gJdy0mSV.slug}}
+- /news

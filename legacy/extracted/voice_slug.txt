@@ -1,0 +1,50 @@
+# /voice/:slug
+uuid: 69d0255e-469c-456e-b086-386fcbe35843
+
+## Text
+{{title}}
+
+{{drG7fqRC}}
+
+業種：{{G7rlLfms.title}}
+
+{{$fn.formatDate(_meta.publishedAt,'YYYY.MM.DD')}}
+
+{{drG7fqRC}}
+
+{{title}}
+
+業種：{{G7rlLfms.title}}
+
+## State / CMS bindings
+https://storage.googleapis.com/studio-design-asset-files/projects/AXq18Ad1O7/s-400x240_webp_6167d339-f2bc-4ef5-a865-17d16f69656e.jpg
+
+羽賀 美子
+
+ひとこと：
+お客様一人一人のご状況に寄り添ったきめ細やかな対応を心がけています。お気軽にご相談ください。
+
+税理士/神奈川税理士会中央支部所属
+
+https://storage.googleapis.com/studio-design-asset-files/projects/AXq18Ad1O7/s-400x240_webp_9270e762-e95a-46cf-9179-67aaf4b10555.jpg
+
+副田 まりえ
+
+ひとこと：
+生まれも育ちも横浜です！お金と経営のご相談はもちろんのこと、美味しいお店のご紹介もできます。
+
+https://storage.googleapis.com/studio-design-asset-files/projects/AXq18Ad1O7/s-400x240_webp_ea758f0d-bec2-414d-8f13-fd30d40f51cb.jpg
+
+林 匠太郎
+
+ひとこと：
+経営者様の「お金」にまつわる不安解消のお手伝いをしたいと思いっています。
+
+お客様の声一覧を見る
+
+/voice
+
+## Links
+- /news/category/{{gJdy0mSV.slug}}
+- /voice/{{slug}}
+- /voice

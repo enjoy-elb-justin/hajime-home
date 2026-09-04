@@ -1,0 +1,198 @@
+{
+  "crawledAt": "2026-09-04T02:42:35.035Z",
+  "method": "playwright-chrome-js-render",
+  "origin": "https://hajime-jp.co.jp",
+  "pages": [
+    {
+      "path": "/",
+      "url": "https://hajime-jp.co.jp/",
+      "file": "index.html",
+      "screenshot": "screenshots/index.png",
+      "textLen": 2164,
+      "htmlBytes": 287201,
+      "hasScript": false,
+      "preview": "HAJIMEコンサルティング株式会社｜外国人経営者向けコンサルティング 読み込まれました 業務分野 Service 業務分野 在日経営コンサルティング支援 組織運営・コミュニケーション支援 専門家連携サポート 事務所について Company 事務所について 代表のあいさつ 経営理念 スタッフ紹介 事務所概要・アクセス お客様の声 お知らせ よくあるご質問 お"
+    },
+    {
+      "path": "/service",
+      "url": "https://hajime-jp.co.jp/service",
+      "file": "service/index.html",
+      "screenshot": "screenshots/service.png",
+      "textLen": 1694,
+      "htmlBytes": 231183,
+      "hasScript": false,
+      "preview": "HAJIMEコンサルティング株式会社｜外国人経営者向けコンサルティング 読み込まれました 業務分野 Service 業務分野 在日経営コンサルティング支援 組織運営・コミュニケーション支援 専門家連携サポート 事務所について Company 事務所について 代表のあいさつ 経営理念 スタッフ紹介 事務所概要・アクセス お客様の声 お知らせ よくあるご質問 お"
+    },
+    {
+      "path": "/service/startup",
+      "url": "https://hajime-jp.co.jp/service/startup",
+      "file": "service/startup/index.html",
+      "screenshot": "screenshots/service_startup.png",
+      "textLen": 1637,
+      "htmlBytes": 201324,
+      "hasScript": false,
+      "preview": "HAJIMEコンサルティング株式会社｜外国人経営者向けコンサルティング 読み込まれました 業務分野 Service 業務分野 在日経営コンサルティング支援 組織運営・コミュニケーション支援 専門家連携サポート 事務所について Company 事務所について 代表のあいさつ 経営理念 スタッフ紹介 事務所概要・アクセス お客様の声 お知らせ よくあるご質問 お"
+    },
+    {
+      "path": "/service/accounting",
+      "url": "https://hajime-jp.co.jp/service/accounting",
+      "file": "service/accounting/index.html",
+      "screenshot": "screenshots/service_accounting.png",
+      "textLen": 1479,
+      "htmlBytes": 198132,
+      "hasScript": false,
+      "preview": "HAJIMEコンサルティング株式会社｜外国人経営者向けコンサルティング 読み込まれました 業務分野 Service 業務分野 在日経営コンサルティング支援 組織運営・コミュニケーション支援 専門家連携サポート 事務所について Company 事務所について 代表のあいさつ 経営理念 スタッフ紹介 事務所概要・アクセス お客様の声 お知らせ よくあるご質問 お"
+    },
+    {
+      "path": "/service/inheritance",
+      "url": "https://hajime-jp.co.jp/service/inheritance",
+      "file": "service/inheritance/index.html",
+      "screenshot": "screenshots/service_inheritance.png",
+      "textLen": 1673,
+      "htmlBytes": 198559,
+      "hasScript": false,
+      "preview": "HAJIMEコンサルティング株式会社｜外国人経営者向けコンサルティング 読み込まれました 業務分野 Service 業務分野 在日経営コンサルティング支援 組織運営・コミュニケーション支援 専門家連携サポート 事務所について Company 事務所について 代表のあいさつ 経営理念 スタッフ紹介 事務所概要・アクセス お客様の声 お知らせ よくあるご質問 お"
+    },
+    {
+      "path": "/company",
+      "url": "https://hajime-jp.co.jp/company",
+      "file": "company/index.html",
+      "screenshot": "screenshots/company.png",
+      "textLen": 2025,
+      "htmlBytes": 204679,
+      "hasScript": false,
+      "preview": "HAJIMEコンサルティング株式会社｜外国人経営者向けコンサルティング 読み込まれました 業務分野 Service 業務分野 在日経営コンサルティング支援 組織運営・コミュニケーション支援 専門家連携サポート 事務所について Company 事務所について 代表のあいさつ 経営理念 スタッフ紹介 事務所概要・アクセス お客様の声 お知らせ よくあるご質問 お"
+    },
+    {
+      "path": "/news",
+      "url": "https://hajime-jp.co.jp/news",
+      "file": "news/index.html",
+      "screenshot": "screenshots/news.png",
+      "textLen": 686,
+      "htmlBytes": 147148,
+      "hasScript": false,
+      "preview": "HAJIMEコンサルティング株式会社｜外国人経営者向けコンサルティング 読み込まれました 業務分野 Service 業務分野 在日経営コンサルティング支援 組織運営・コミュニケーション支援 専門家連携サポート 事務所について Company 事務所について 代表のあいさつ 経営理念 スタッフ紹介 事務所概要・アクセス お客様の声 お知らせ よくあるご質問 お"
+    },
+    {
+      "path": "/news/20230306",
+      "url": "https://hajime-jp.co.jp/news/20230306",
+      "file": "news/20230306/index.html",
+      "screenshot": "screenshots/news_20230306.png",
+      "textLen": 486,
+      "htmlBytes": 119669,
+      "hasScript": false,
+      "preview": "ホームページを公開しました 読み込まれました 業務分野 Service 業務分野 在日経営コンサルティング支援 組織運営・コミュニケーション支援 専門家連携サポート 事務所について Company 事務所について 代表のあいさつ 経営理念 スタッフ紹介 事務所概要・アクセス お客様の声 お知らせ よくあるご質問 お問い合わせ ホームページを公開しました 20"
+    },
+    {
+      "path": "/news/cQWrIPXm",
+      "url": "https://hajime-jp.co.jp/news/cQWrIPXm",
+      "file": "news/cQWrIPXm/index.html",
+      "screenshot": "screenshots/news_cQWrIPXm.png",
+      "textLen": 522,
+      "htmlBytes": 119946,
+      "hasScript": false,
+      "preview": "外国人材受け入れ企業向け研修プログラムを拡充しました 読み込まれました 業務分野 Service 業務分野 在日経営コンサルティング支援 組織運営・コミュニケーション支援 専門家連携サポート 事務所について Company 事務所について 代表のあいさつ 経営理念 スタッフ紹介 事務所概要・アクセス お客様の声 お知らせ よくあるご質問 お問い合わせ 外国人"
+    },
+    {
+      "path": "/news/DPBOUagc",
+      "url": "https://hajime-jp.co.jp/news/DPBOUagc",
+      "file": "news/DPBOUagc/index.html",
+      "screenshot": "screenshots/news_DPBOUagc.png",
+      "textLen": 521,
+      "htmlBytes": 119961,
+      "hasScript": false,
+      "preview": "在日経営者向けセミナーを開催しました 読み込まれました 業務分野 Service 業務分野 在日経営コンサルティング支援 組織運営・コミュニケーション支援 専門家連携サポート 事務所について Company 事務所について 代表のあいさつ 経営理念 スタッフ紹介 事務所概要・アクセス お客様の声 お知らせ よくあるご質問 お問い合わせ 在日経営者向けセミナー"
+    },
+    {
+      "path": "/news/ge4vL_oG",
+      "url": "https://hajime-jp.co.jp/news/ge4vL_oG",
+      "file": "news/ge4vL_oG/index.html",
+      "screenshot": "screenshots/news_ge4vL_oG.png",
+      "textLen": 529,
+      "htmlBytes": 120020,
+      "hasScript": false,
+      "preview": "外国人向けビジネスマナー研修を実施しました 読み込まれました 業務分野 Service 業務分野 在日経営コンサルティング支援 組織運営・コミュニケーション支援 専門家連携サポート 事務所について Company 事務所について 代表のあいさつ 経営理念 スタッフ紹介 事務所概要・アクセス お客様の声 お知らせ よくあるご質問 お問い合わせ 外国人向けビジネ"
+    },
+    {
+      "path": "/voice",
+      "url": "https://hajime-jp.co.jp/voice",
+      "file": "voice/index.html",
+      "screenshot": "screenshots/voice.png",
+      "textLen": 658,
+      "htmlBytes": 146570,
+      "hasScript": false,
+      "preview": "HAJIMEコンサルティング株式会社｜外国人経営者向けコンサルティング 読み込まれました 業務分野 Service 業務分野 在日経営コンサルティング支援 組織運営・コミュニケーション支援 専門家連携サポート 事務所について Company 事務所について 代表のあいさつ 経営理念 スタッフ紹介 事務所概要・アクセス お客様の声 お知らせ よくあるご質問 お"
+    },
+    {
+      "path": "/voice/A",
+      "url": "https://hajime-jp.co.jp/voice/A",
+      "file": "voice/A/index.html",
+      "screenshot": "screenshots/voice_A.png",
+      "textLen": 837,
+      "htmlBytes": 138598,
+      "hasScript": false,
+      "preview": "外国人スタッフとのコミュニケーションが格段に良くなりました。 読み込まれました 業務分野 Service 業務分野 在日経営コンサルティング支援 組織運営・コミュニケーション支援 専門家連携サポート 事務所について Company 事務所について 代表のあいさつ 経営理念 スタッフ紹介 事務所概要・アクセス お客様の声 お知らせ よくあるご質問 お問い合わせ"
+    },
+    {
+      "path": "/voice/B",
+      "url": "https://hajime-jp.co.jp/voice/B",
+      "file": "voice/B/index.html",
+      "screenshot": "screenshots/voice_B.png",
+      "textLen": 881,
+      "htmlBytes": 138773,
+      "hasScript": false,
+      "preview": "日本のビジネスマナーを体系的に理解できました。 読み込まれました 業務分野 Service 業務分野 在日経営コンサルティング支援 組織運営・コミュニケーション支援 専門家連携サポート 事務所について Company 事務所について 代表のあいさつ 経営理念 スタッフ紹介 事務所概要・アクセス お客様の声 お知らせ よくあるご質問 お問い合わせ 日本のビジネ"
+    },
+    {
+      "path": "/voice/C",
+      "url": "https://hajime-jp.co.jp/voice/C",
+      "file": "voice/C/index.html",
+      "screenshot": "screenshots/voice_C.png",
+      "textLen": 800,
+      "htmlBytes": 138486,
+      "hasScript": false,
+      "preview": "専門家との連携もスムーズで安心感があります。 読み込まれました 業務分野 Service 業務分野 在日経営コンサルティング支援 組織運営・コミュニケーション支援 専門家連携サポート 事務所について Company 事務所について 代表のあいさつ 経営理念 スタッフ紹介 事務所概要・アクセス お客様の声 お知らせ よくあるご質問 お問い合わせ 専門家との連携"
+    },
+    {
+      "path": "/contact",
+      "url": "https://hajime-jp.co.jp/contact",
+      "file": "contact/index.html",
+      "screenshot": "screenshots/contact.png",
+      "textLen": 741,
+      "htmlBytes": 148676,
+      "hasScript": false,
+      "preview": "HAJIMEコンサルティング株式会社｜外国人経営者向けコンサルティング 読み込まれました 業務分野 Service 業務分野 在日経営コンサルティング支援 組織運営・コミュニケーション支援 専門家連携サポート 事務所について Company 事務所について 代表のあいさつ 経営理念 スタッフ紹介 事務所概要・アクセス お客様の声 お知らせ よくあるご質問 お"
+    },
+    {
+      "path": "/contact/thanks",
+      "url": "https://hajime-jp.co.jp/contact/thanks",
+      "file": "contact/thanks/index.html",
+      "screenshot": "screenshots/contact_thanks.png",
+      "textLen": 767,
+      "htmlBytes": 124745,
+      "hasScript": false,
+      "preview": "HAJIMEコンサルティング株式会社｜外国人経営者向けコンサルティング 読み込まれました 業務分野 Service 業務分野 在日経営コンサルティング支援 組織運営・コミュニケーション支援 専門家連携サポート 事務所について Company 事務所について 代表のあいさつ 経営理念 スタッフ紹介 事務所概要・アクセス お客様の声 お知らせ よくあるご質問 お"
+    },
+    {
+      "path": "/faq",
+      "url": "https://hajime-jp.co.jp/faq",
+      "file": "faq/index.html",
+      "screenshot": "screenshots/faq.png",
+      "textLen": 1761,
+      "htmlBytes": 219085,
+      "hasScript": false,
+      "preview": "HAJIMEコンサルティング株式会社｜外国人経営者向けコンサルティング 読み込まれました 業務分野 Service 業務分野 在日経営コンサルティング支援 組織運営・コミュニケーション支援 専門家連携サポート 事務所について Company 事務所について 代表のあいさつ 経営理念 スタッフ紹介 事務所概要・アクセス お客様の声 お知らせ よくあるご質問 お"
+    },
+    {
+      "path": "/privacy",
+      "url": "https://hajime-jp.co.jp/privacy",
+      "file": "privacy/index.html",
+      "screenshot": "screenshots/privacy.png",
+      "textLen": 1493,
+      "htmlBytes": 134136,
+      "hasScript": false,
+      "preview": "HAJIMEコンサルティング株式会社｜外国人経営者向けコンサルティング 読み込まれました 業務分野 Service 業務分野 在日経営コンサルティング支援 組織運営・コミュニケーション支援 専門家連携サポート 事務所について Company 事務所について 代表のあいさつ 経営理念 スタッフ紹介 事務所概要・アクセス お客様の声 お知らせ よくあるご質問 お"
+    }
+  ],
+  "errors": []
+}

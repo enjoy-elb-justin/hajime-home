@@ -1,0 +1,86 @@
+# /service/startup
+uuid: ce891773-b14a-4fb1-8d30-723ed1643af6
+
+## Text
+日本での経営課題を整理し、
+安心して判断できる事業運営へ
+
+単なる情報提供ではなく、現在の状況を一緒に整理し、何を優先すべきか、
+どのように進めるべきかを明確にしながら、具体的な解決策をご提案します。
+
+{{title.value}}
+
+経営者が安心して次の一歩を
+踏み出せるようサポート
+
+{{title.value}}
+
+Q.
+
+{{title}}
+
+A.
+
+{{rPu46O3a}}
+
+もっと見る
+
+## State / CMS bindings
+業務分野
+
+Company
+
+#fv
+
+在日経営コンサルティング支援
+
+Service 01
+
+Problem
+
+このようなお悩みに対応しています
+
+日本の商習慣や取引ルールが分かりにくい
+
+事業を始めたものの、何から整えるべきか分からない
+
+経営上のリスクを事前に把握したい
+
+日本人顧客や取引先との対応に不安がある
+
+従業員とのコミュニケーションや管理体制に課題を感じている
+
+専門家に相談すべき内容かどうか判断できない
+
+事業運営をより効率的に整えたい
+
+日本市場に合わせた経営判断を行いたい
+
+Service
+
+サポート内容
+
+経営課題の整理
+
+事業運営の改善提案
+
+リスク管理サポート
+
+日本の商習慣・
+市場環境への適応支援
+
+FAQ
+
+よくある質問
+
+一覧を見る
+
+Hello World
+
+## Links
+- #fv
+
+## Images
+- https://storage.googleapis.com/studio-design-asset-files/projects/RQqJv9xwqg/s-768x1408_v-fms_webp_334b142a-38b3-4080-91aa-cb2ed3709bb3.png
+- https://storage.googleapis.com/studio-design-asset-files/projects/nBW2G1RLOv/s-1536x1024_v-fms_webp_b5f9513f-1705-413f-b563-725df17788d0.png
+- https://images.unsplash.com/photo-1563457012475-13cf086fd600?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MzQ2fDB8MXxjb2xsZWN0aW9ufDF8MDFHT3ZNX3EwcGd8fHx8fDJ8fDE3MDkzNjQwODd8&ixlib=rb-4.0.3&q=80&w=1080

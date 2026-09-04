@@ -1,0 +1,607 @@
+{
+  "crawledAt": "2026-09-04T02:25:39.319Z",
+  "origin": "https://hajime-jp.co.jp",
+  "pages": [
+    {
+      "url": "https://hajime-jp.co.jp/",
+      "file": "index.html",
+      "status": 200,
+      "bytes": 22077
+    },
+    {
+      "url": "https://hajime-jp.co.jp/contact",
+      "file": "contact/index.html",
+      "status": 200,
+      "bytes": 22122
+    },
+    {
+      "url": "https://hajime-jp.co.jp/404",
+      "file": "404/index.html",
+      "status": 404,
+      "bytes": 22063
+    },
+    {
+      "url": "https://hajime-jp.co.jp/news",
+      "file": "news/index.html",
+      "status": 200,
+      "bytes": 22107
+    },
+    {
+      "url": "https://hajime-jp.co.jp/contact/thanks",
+      "file": "contact/thanks/index.html",
+      "status": 200,
+      "bytes": 22172
+    },
+    {
+      "url": "https://hajime-jp.co.jp/faq",
+      "file": "faq/index.html",
+      "status": 200,
+      "bytes": 22102
+    },
+    {
+      "url": "https://hajime-jp.co.jp/company",
+      "file": "company/index.html",
+      "status": 200,
+      "bytes": 22122
+    },
+    {
+      "url": "https://hajime-jp.co.jp/privacy",
+      "file": "privacy/index.html",
+      "status": 200,
+      "bytes": 22122
+    },
+    {
+      "url": "https://hajime-jp.co.jp/service/accounting",
+      "file": "service/accounting/index.html",
+      "status": 200,
+      "bytes": 22192
+    },
+    {
+      "url": "https://hajime-jp.co.jp/service/inheritance",
+      "file": "service/inheritance/index.html",
+      "status": 200,
+      "bytes": 22197
+    },
+    {
+      "url": "https://hajime-jp.co.jp/service",
+      "file": "service/index.html",
+      "status": 200,
+      "bytes": 22122
+    },
+    {
+      "url": "https://hajime-jp.co.jp/service/startup",
+      "file": "service/startup/index.html",
+      "status": 200,
+      "bytes": 22177
+    },
+    {
+      "url": "https://hajime-jp.co.jp/voice",
+      "file": "voice/index.html",
+      "status": 200,
+      "bytes": 22112
+    },
+    {
+      "url": "https://hajime-jp.co.jp/voice/B",
+      "file": "voice/B/index.html",
+      "status": 200,
+      "bytes": 24872
+    },
+    {
+      "url": "https://hajime-jp.co.jp/news/20230306",
+      "file": "news/20230306/index.html",
+      "status": 200,
+      "bytes": 22704
+    },
+    {
+      "url": "https://hajime-jp.co.jp/news/DPBOUagc",
+      "file": "news/DPBOUagc/index.html",
+      "status": 200,
+      "bytes": 22980
+    },
+    {
+      "url": "https://hajime-jp.co.jp/news/ge4vL_oG",
+      "file": "news/ge4vL_oG/index.html",
+      "status": 200,
+      "bytes": 23032
+    },
+    {
+      "url": "https://hajime-jp.co.jp/news/cQWrIPXm",
+      "file": "news/cQWrIPXm/index.html",
+      "status": 200,
+      "bytes": 22941
+    },
+    {
+      "url": "https://hajime-jp.co.jp/voice/A",
+      "file": "voice/A/index.html",
+      "status": 200,
+      "bytes": 24665
+    },
+    {
+      "url": "https://hajime-jp.co.jp/voice/C",
+      "file": "voice/C/index.html",
+      "status": 200,
+      "bytes": 24560
+    }
+  ],
+  "assets": [
+    {
+      "url": "https://hajime-jp.co.jp/_nuxt/entry.C8IAa5VU.css",
+      "file": "_nuxt/entry.C8IAa5VU.css",
+      "status": 200,
+      "bytes": 235
+    },
+    {
+      "url": "https://hajime-jp.co.jp/_nuxt/LIlu_LvA.js",
+      "file": "_nuxt/LIlu_LvA.js",
+      "status": 200,
+      "bytes": 10431
+    },
+    {
+      "url": "https://hajime-jp.co.jp/_nuxt/IqfR3qM3.js",
+      "file": "_nuxt/IqfR3qM3.js",
+      "status": 200,
+      "bytes": 8415
+    },
+    {
+      "url": "https://storage.googleapis.com/production-os-assets/assets/83e6b6fd-d753-43c0-a7fd-87d82910d263",
+      "file": "assets/storage.googleapis.com/production-os-assets/assets/83e6b6fd-d753-43c0-a7fd-87d82910d263",
+      "status": 200,
+      "bytes": 725
+    },
+    {
+      "url": "https://hajime-jp.co.jp/_nuxt/rxhDcyfF.js",
+      "file": "_nuxt/rxhDcyfF.js",
+      "status": 200,
+      "bytes": 145
+    },
+    {
+      "url": "https://hajime-jp.co.jp/_nuxt/CR0bk9ef.js",
+      "file": "_nuxt/CR0bk9ef.js",
+      "status": 200,
+      "bytes": 55136
+    },
+    {
+      "url": "https://hajime-jp.co.jp/_nuxt/h8xxHHpb.js",
+      "file": "_nuxt/h8xxHHpb.js",
+      "status": 200,
+      "bytes": 39493
+    },
+    {
+      "url": "https://hajime-jp.co.jp/_nuxt/HclGiUj8.js",
+      "file": "_nuxt/HclGiUj8.js",
+      "status": 200,
+      "bytes": 1211
+    },
+    {
+      "url": "https://hajime-jp.co.jp/_nuxt/DiFoSUVA.js",
+      "file": "_nuxt/DiFoSUVA.js",
+      "status": 200,
+      "bytes": 76658
+    },
+    {
+      "url": "https://hajime-jp.co.jp/_nuxt/D4ZBc7RD.js",
+      "file": "_nuxt/D4ZBc7RD.js",
+      "status": 200,
+      "bytes": 587
+    },
+    {
+      "url": "https://hajime-jp.co.jp/_nuxt/DgYBeLOD.js",
+      "file": "_nuxt/DgYBeLOD.js",
+      "status": 200,
+      "bytes": 255
+    },
+    {
+      "url": "https://hajime-jp.co.jp/_nuxt/C7hSKfIO.js",
+      "file": "_nuxt/C7hSKfIO.js",
+      "status": 200,
+      "bytes": 162410
+    },
+    {
+      "url": "https://hajime-jp.co.jp/_nuxt/Bwj6AMxI.js",
+      "file": "_nuxt/Bwj6AMxI.js",
+      "status": 200,
+      "bytes": 9268
+    },
+    {
+      "url": "https://hajime-jp.co.jp/_nuxt/BDNMzG2s.js",
+      "file": "_nuxt/BDNMzG2s.js",
+      "status": 200,
+      "bytes": 84
+    },
+    {
+      "url": "https://storage.googleapis.com/production-os-assets/assets/668d48e0-14a7-4194-ad1c-2a10b28450cb",
+      "file": "assets/storage.googleapis.com/production-os-assets/assets/668d48e0-14a7-4194-ad1c-2a10b28450cb",
+      "status": 200,
+      "bytes": 199764
+    },
+    {
+      "url": "https://hajime-jp.co.jp/_nuxt/LivePreviewMenu.kLU65jDH.css",
+      "file": "_nuxt/LivePreviewMenu.kLU65jDH.css",
+      "status": 200,
+      "bytes": 2146
+    },
+    {
+      "url": "https://hajime-jp.co.jp/_nuxt/DAGMYgdB.js",
+      "file": "_nuxt/DAGMYgdB.js",
+      "status": 200,
+      "bytes": 106434
+    },
+    {
+      "url": "https://hajime-jp.co.jp/_nuxt/DrtZ7d4Y.js",
+      "file": "_nuxt/DrtZ7d4Y.js",
+      "status": 200,
+      "bytes": 7437
+    },
+    {
+      "url": "https://hajime-jp.co.jp/_nuxt/BsPUGHV62.js",
+      "file": "_nuxt/BsPUGHV62.js",
+      "status": 200,
+      "bytes": 61318
+    },
+    {
+      "url": "https://hajime-jp.co.jp/_nuxt/CopuYRAH.js",
+      "file": "_nuxt/CopuYRAH.js",
+      "status": 200,
+      "bytes": 404
+    },
+    {
+      "url": "https://hajime-jp.co.jp/_nuxt/Bj8o_Cks.js",
+      "file": "_nuxt/Bj8o_Cks.js",
+      "status": 200,
+      "bytes": 3788
+    },
+    {
+      "url": "https://hajime-jp.co.jp/_nuxt/ucRc0Q1V.js",
+      "file": "_nuxt/ucRc0Q1V.js",
+      "status": 200,
+      "bytes": 1755
+    },
+    {
+      "url": "https://hajime-jp.co.jp/_nuxt/C5vFf2mc.js",
+      "file": "_nuxt/C5vFf2mc.js",
+      "status": 200,
+      "bytes": 3440
+    },
+    {
+      "url": "https://hajime-jp.co.jp/_nuxt/BJHjG8wo.js",
+      "file": "_nuxt/BJHjG8wo.js",
+      "status": 200,
+      "bytes": 241681
+    },
+    {
+      "url": "https://hajime-jp.co.jp/_nuxt/B4g-fiFA.js",
+      "file": "_nuxt/B4g-fiFA.js",
+      "status": 200,
+      "bytes": 78668
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1517048676732-d65bc937f952?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MzQ2fDB8MXxzZWFyY2h8ODh8fG1lZXRpbmd8ZW58MHx8fHwxNzA4NjY1MjE5fDA&ixlib=rb-4.0.3&q=80&w=1080",
+      "file": "assets/images.unsplash.com/photo-1517048676732-d65bc937f952.bin",
+      "status": 200,
+      "bytes": 108433
+    },
+    {
+      "url": "https://storage.stock.studio.design/optimized/cyVAMN5GvaG9rrUfYrMln.webp",
+      "file": "assets/storage.stock.studio.design/optimized/cyVAMN5GvaG9rrUfYrMln.webp",
+      "status": 200,
+      "bytes": 35846
+    },
+    {
+      "url": "https://storage.stock.studio.design/optimized/6udaLBWEc67EojDHSlJHg.webp",
+      "file": "assets/storage.stock.studio.design/optimized/6udaLBWEc67EojDHSlJHg.webp",
+      "status": 200,
+      "bytes": 29386
+    },
+    {
+      "url": "https://storage.stock.studio.design/optimized/5slJwMMqbMxshpZoYP1d8.webp",
+      "file": "assets/storage.stock.studio.design/optimized/5slJwMMqbMxshpZoYP1d8.webp",
+      "status": 200,
+      "bytes": 34864
+    },
+    {
+      "url": "https://storage.stock.studio.design/optimized/MqkI8q5BgYIC8tuYeoy3d.webp",
+      "file": "assets/storage.stock.studio.design/optimized/MqkI8q5BgYIC8tuYeoy3d.webp",
+      "status": 200,
+      "bytes": 71846
+    },
+    {
+      "url": "https://storage.stock.studio.design/optimized/mC1VJf1ltGVFUurog8K3g.webp",
+      "file": "assets/storage.stock.studio.design/optimized/mC1VJf1ltGVFUurog8K3g.webp",
+      "status": 200,
+      "bytes": 71918
+    },
+    {
+      "url": "https://storage.googleapis.com/studio-design-asset-files/projects/nBW2G1RLOv/s-1254x395_v-fms_webp_9fcb634a-24ac-4aac-9209-b59acaceeb6c.png",
+      "file": "assets/storage.googleapis.com/studio-design-asset-files/projects/nBW2G1RLOv/s-1254x395_v-fms_webp_9fcb634a-24ac-4aac-9209-b59acaceeb6c.png",
+      "status": 200,
+      "bytes": 168187
+    },
+    {
+      "url": "https://storage.googleapis.com/studio-design-asset-files/projects/AXq18Ad1O7/s-400x240_webp_9270e762-e95a-46cf-9179-67aaf4b10555.jpg",
+      "file": "assets/storage.googleapis.com/studio-design-asset-files/projects/AXq18Ad1O7/s-400x240_webp_9270e762-e95a-46cf-9179-67aaf4b10555.jpg",
+      "status": 200,
+      "bytes": 15206
+    },
+    {
+      "url": "https://storage.googleapis.com/studio-design-asset-files/projects/AXq18Ad1O7/s-400x240_webp_6167d339-f2bc-4ef5-a865-17d16f69656e.jpg",
+      "file": "assets/storage.googleapis.com/studio-design-asset-files/projects/AXq18Ad1O7/s-400x240_webp_6167d339-f2bc-4ef5-a865-17d16f69656e.jpg",
+      "status": 200,
+      "bytes": 15768
+    },
+    {
+      "url": "https://storage.googleapis.com/studio-design-asset-files/projects/AXq18Ad1O7/s-400x240_webp_ea758f0d-bec2-414d-8f13-fd30d40f51cb.jpg",
+      "file": "assets/storage.googleapis.com/studio-design-asset-files/projects/AXq18Ad1O7/s-400x240_webp_ea758f0d-bec2-414d-8f13-fd30d40f51cb.jpg",
+      "status": 200,
+      "bytes": 10660
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1563457012475-13cf086fd600?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MzQ2fDB8MXxjb2xsZWN0aW9ufDF8MDFHT3ZNX3EwcGd8fHx8fDJ8fDE3MDkzNjQwODd8&ixlib=rb-4.0.3&q=80&w=1080",
+      "file": "assets/images.unsplash.com/photo-1563457012475-13cf086fd600.bin",
+      "status": 200,
+      "bytes": 108017
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1517502884422-41eaead166d4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MzQ2fDB8MXxzZWFyY2h8Njl8fG9mZmljZSUyMGNvbmZlcmVuY2UlMjByb29tfGVufDB8fHx8MTcwOTQ0NzQ3Mnww&ixlib=rb-4.0.3&q=80&w=1080",
+      "file": "assets/images.unsplash.com/photo-1517502884422-41eaead166d4.bin",
+      "status": 200,
+      "bytes": 182472
+    },
+    {
+      "url": "https://storage.googleapis.com/studio-design-asset-files/projects/RQqJv9xwqg/s-768x1408_v-fms_webp_334b142a-38b3-4080-91aa-cb2ed3709bb3.png",
+      "file": "assets/storage.googleapis.com/studio-design-asset-files/projects/RQqJv9xwqg/s-768x1408_v-fms_webp_334b142a-38b3-4080-91aa-cb2ed3709bb3.png",
+      "status": 200,
+      "bytes": 1509226
+    },
+    {
+      "url": "https://storage.googleapis.com/studio-design-asset-files/projects/nBW2G1RLOv/s-1536x1024_v-fms_webp_df5016f9-73b6-4ce3-ae8f-9403c23f0546.png",
+      "file": "assets/storage.googleapis.com/studio-design-asset-files/projects/nBW2G1RLOv/s-1536x1024_v-fms_webp_df5016f9-73b6-4ce3-ae8f-9403c23f0546.png",
+      "status": 200,
+      "bytes": 1708235
+    },
+    {
+      "url": "https://storage.googleapis.com/studio-design-asset-files/projects/nBW2G1RLOv/s-1023x1537_v-fms_webp_c0689a03-2944-4e07-8b16-651614c38d23.jpg",
+      "file": "assets/storage.googleapis.com/studio-design-asset-files/projects/nBW2G1RLOv/s-1023x1537_v-fms_webp_c0689a03-2944-4e07-8b16-651614c38d23.jpg",
+      "status": 200,
+      "bytes": 153700
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1517048676732-d65bc937f952?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MzQ2fDB8MXxjb2xsZWN0aW9ufDE0fEppMktRUVFwbVFrfHx8fHwyfHwxNzA5NDQyNDI3fA&ixlib=rb-4.0.3&q=80&w=1080",
+      "file": "assets/images.unsplash.com/photo-1517048676732-d65bc937f952.bin",
+      "status": 200,
+      "bytes": 108433
+    },
+    {
+      "url": "https://storage.stock.studio.design/optimized/5ggCAF_M0TpXY9E59Hsof.webp",
+      "file": "assets/storage.stock.studio.design/optimized/5ggCAF_M0TpXY9E59Hsof.webp",
+      "status": 200,
+      "bytes": 36364
+    },
+    {
+      "url": "https://storage.googleapis.com/studio-design-asset-files/projects/nBW2G1RLOv/s-830x1895_v-frms_webp_abed43f7-b725-4bd4-a50a-c5a1bdcf639a.png",
+      "file": "assets/storage.googleapis.com/studio-design-asset-files/projects/nBW2G1RLOv/s-830x1895_v-frms_webp_abed43f7-b725-4bd4-a50a-c5a1bdcf639a.png",
+      "status": 200,
+      "bytes": 1541278
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1511362328651-90cc517fbe31?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MzQ2fDB8MXxzZWFyY2h8NHx8b2ZmaWNlJTIwZ3JlZW58ZW58MHx8fHwxNzA5NDQyNzk2fDA&ixlib=rb-4.0.3&q=80&w=1080",
+      "file": "assets/images.unsplash.com/photo-1511362328651-90cc517fbe31.bin",
+      "status": 200,
+      "bytes": 105302
+    },
+    {
+      "url": "https://storage.stock.studio.design/optimized/EuIyc2lndi3TQg14Cnmad.webp",
+      "file": "assets/storage.stock.studio.design/optimized/EuIyc2lndi3TQg14Cnmad.webp",
+      "status": 200,
+      "bytes": 79776
+    },
+    {
+      "url": "https://storage.googleapis.com/studio-design-asset-files/projects/AXq18Ad1O7/s-18x21_ee509831-2b98-4367-8c6d-e229e2c866af.svg",
+      "file": "assets/storage.googleapis.com/studio-design-asset-files/projects/AXq18Ad1O7/s-18x21_ee509831-2b98-4367-8c6d-e229e2c866af.svg",
+      "status": 200,
+      "bytes": 191
+    },
+    {
+      "url": "https://storage.googleapis.com/studio-design-asset-files/projects/AXq18Ad1O7/s-82x82_54a8835b-3540-431c-9db8-adf97fb93bc9.svg",
+      "file": "assets/storage.googleapis.com/studio-design-asset-files/projects/AXq18Ad1O7/s-82x82_54a8835b-3540-431c-9db8-adf97fb93bc9.svg",
+      "status": 200,
+      "bytes": 1353
+    },
+    {
+      "url": "https://storage.googleapis.com/studio-design-asset-files/projects/AXq18Ad1O7/s-82x82_5fd1c663-ba16-4669-ada3-1e3fc16aa0e6.svg",
+      "file": "assets/storage.googleapis.com/studio-design-asset-files/projects/AXq18Ad1O7/s-82x82_5fd1c663-ba16-4669-ada3-1e3fc16aa0e6.svg",
+      "status": 200,
+      "bytes": 1939
+    },
+    {
+      "url": "https://storage.googleapis.com/studio-design-asset-files/projects/AXq18Ad1O7/s-82x82_e7ea0756-a187-4015-9cdd-20ae30d3ebb4.svg",
+      "file": "assets/storage.googleapis.com/studio-design-asset-files/projects/AXq18Ad1O7/s-82x82_e7ea0756-a187-4015-9cdd-20ae30d3ebb4.svg",
+      "status": 200,
+      "bytes": 9182
+    },
+    {
+      "url": "https://storage.googleapis.com/studio-design-asset-files/projects/AXq18Ad1O7/s-68x58_ea2e495c-1f6b-4518-9800-36d7cfefe794.svg",
+      "file": "assets/storage.googleapis.com/studio-design-asset-files/projects/AXq18Ad1O7/s-68x58_ea2e495c-1f6b-4518-9800-36d7cfefe794.svg",
+      "status": 200,
+      "bytes": 1941
+    },
+    {
+      "url": "https://storage.googleapis.com/studio-design-asset-files/projects/nBW2G1RLOv/s-1254x1254_v-fms_webp_239bc6e4-cec6-4db1-9668-861a1d492b01.png",
+      "file": "assets/storage.googleapis.com/studio-design-asset-files/projects/nBW2G1RLOv/s-1254x1254_v-fms_webp_239bc6e4-cec6-4db1-9668-861a1d492b01.png",
+      "status": 200,
+      "bytes": 168816
+    },
+    {
+      "url": "https://storage.googleapis.com/studio-design-asset-files/projects/nBW2G1RLOv/s-1536x1024_v-fms_webp_b5f9513f-1705-413f-b563-725df17788d0.png",
+      "file": "assets/storage.googleapis.com/studio-design-asset-files/projects/nBW2G1RLOv/s-1536x1024_v-fms_webp_b5f9513f-1705-413f-b563-725df17788d0.png",
+      "status": 200,
+      "bytes": 1674801
+    },
+    {
+      "url": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap",
+      "file": "assets/fonts.googleapis.com/css2.bin",
+      "status": 200,
+      "bytes": 1848
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfMZg.ttf",
+      "file": "assets/fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfMZg.ttf",
+      "status": 200,
+      "bytes": 324820
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuI6fMZg.ttf",
+      "file": "assets/fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuI6fMZg.ttf",
+      "status": 200,
+      "bytes": 325304
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuGKYMZg.ttf",
+      "file": "assets/fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuGKYMZg.ttf",
+      "status": 200,
+      "bytes": 326048
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuFuYMZg.ttf",
+      "file": "assets/fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuFuYMZg.ttf",
+      "status": 200,
+      "bytes": 326468
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/notosansjp/v56/-F6jfjtqLzI2JPCgQBnw7HFyzSD-AsregP8VFBEj75s.ttf",
+      "file": "assets/fonts.gstatic.com/s/notosansjp/v56/-F6jfjtqLzI2JPCgQBnw7HFyzSD-AsregP8VFBEj75s.ttf",
+      "status": 200,
+      "bytes": 5324144
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/notosansjp/v56/-F6jfjtqLzI2JPCgQBnw7HFyzSD-AsregP8VFCMj75s.ttf",
+      "file": "assets/fonts.gstatic.com/s/notosansjp/v56/-F6jfjtqLzI2JPCgQBnw7HFyzSD-AsregP8VFCMj75s.ttf",
+      "status": 200,
+      "bytes": 5320828
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/notosansjp/v56/-F6jfjtqLzI2JPCgQBnw7HFyzSD-AsregP8VFM8k75s.ttf",
+      "file": "assets/fonts.gstatic.com/s/notosansjp/v56/-F6jfjtqLzI2JPCgQBnw7HFyzSD-AsregP8VFM8k75s.ttf",
+      "status": 200,
+      "bytes": 5318344
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/notosansjp/v56/-F6jfjtqLzI2JPCgQBnw7HFyzSD-AsregP8VFPYk75s.ttf",
+      "file": "assets/fonts.gstatic.com/s/notosansjp/v56/-F6jfjtqLzI2JPCgQBnw7HFyzSD-AsregP8VFPYk75s.ttf",
+      "status": 200,
+      "bytes": 5319680
+    }
+  ],
+  "errors": [
+    {
+      "url": "https://fonts.gstatic.com/",
+      "status": 404
+    },
+    {
+      "url": "https://fonts.googleapis.com/",
+      "status": 404
+    }
+  ],
+  "pageCount": 20,
+  "assetCount": 61,
+  "snapshotPages": [
+    {
+      "id": "/",
+      "uuid": "254c5996-06fb-4a5a-a1d4-37c426170247",
+      "type": "page"
+    },
+    {
+      "id": "hamburger",
+      "uuid": "c63beff0-86fe-4170-9b7a-8ea05bff8e7b",
+      "type": "modal"
+    },
+    {
+      "id": "service",
+      "uuid": "dd5eea0b-1740-4d7e-92aa-547ded2d430e",
+      "type": "page"
+    },
+    {
+      "id": "company",
+      "uuid": "3dc1cf50-e2e0-4cfe-8b1b-51e2d2accedf",
+      "type": "page"
+    },
+    {
+      "id": "news",
+      "uuid": "af8b1640-0de4-4000-a7e8-de617dfcd328",
+      "type": "page"
+    },
+    {
+      "id": "news/category/:slug",
+      "uuid": "58859e24-82ed-4e56-94e6-6682d282f98e",
+      "type": "page"
+    },
+    {
+      "id": "voice",
+      "uuid": "8519f3eb-c6ff-4d61-9821-e97ebf748e53",
+      "type": "page"
+    },
+    {
+      "id": "contact",
+      "uuid": "64bcec7e-e291-4d6e-9c03-07560c66d382",
+      "type": "page"
+    },
+    {
+      "id": "contact/thanks",
+      "uuid": "c1e5a2d0-98f7-429c-a507-0d5fa754bf94",
+      "type": "page"
+    },
+    {
+      "id": "voice/:slug",
+      "uuid": "69d0255e-469c-456e-b086-386fcbe35843",
+      "type": "page"
+    },
+    {
+      "id": "news/:slug",
+      "uuid": "366acb96-ff3f-4779-a54e-92f7cffc9bb3",
+      "type": "page"
+    },
+    {
+      "id": "service/startup",
+      "uuid": "ce891773-b14a-4fb1-8d30-723ed1643af6",
+      "type": "page"
+    },
+    {
+      "id": "service/accounting",
+      "uuid": "b2d14ade-390e-4bb9-9cbc-3385b0d91b8b",
+      "type": "page"
+    },
+    {
+      "id": "service/inheritance",
+      "uuid": "2cf760c5-6888-4869-ae92-77dc8ec1e678",
+      "type": "page"
+    },
+    {
+      "id": "faq",
+      "uuid": "6813c8ab-5449-4ee3-a920-da4e49a39c25",
+      "type": "page"
+    },
+    {
+      "id": "privacy",
+      "uuid": "18d5b284-79d3-47c4-b070-ffe0f98d9237",
+      "type": "page"
+    },
+    {
+      "id": "404",
+      "uuid": "61b6a524-5f1e-4d79-b21d-a7fb21952aef",
+      "type": "page"
+    }
+  ],
+  "cms": {
+    "news": 4,
+    "voice": 3,
+    "newsCategory": 0
+  },
+  "notes": {
+    "html": "Nuxt/STUDIO SPA shells. Actual page trees are in snapshot/page-views and snapshot/symbol-views.",
+    "extracted": "Plain-text dumps of page copy plus CMS news/voice articles.",
+    "cms": "STUDIO CMS JSON. news=4, voice=3."
+  },
+  "extraAssets": [
+    "assets/storage.googleapis.com/studio-cms-assets/projects/brqEMjnwq4/s-1584x1200_v-fms_webp_7ec40d1c-5a65-400b-978f-a9ea0f37c674.jpg",
+    "assets/storage.googleapis.com/studio-cms-assets/projects/brqEMjnwq4/s-920x608_v-fs_webp_9952437a-c6c1-4286-b8d6-a6d00848e753.jpg"
+  ]
+}
