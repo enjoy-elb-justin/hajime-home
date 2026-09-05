@@ -1,0 +1,315 @@
+---
+import '../styles/fonts.css';
+import '../styles/studio-base.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  canonicalUrl?: string;
+}
+
+const {
+  title = "HAJIMEコンサルティング株式会社｜外国人経営者向けコンサルティング",
+  description = "HAJIMEコンサルティング株式会社のコーポレートサイト。日本で挑戦する外国人経営者が安心して成長するためのコンサルティングサービス。",
+  ogImage = "/assets/storage.googleapis.com/production-os-assets/assets/668d48e0-14a7-4194-ad1c-2a10b28450cb",
+  canonicalUrl
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="generator" content={Astro.generator} />
+  <meta name="robots" content="all" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:site_name" content="HAJIMEコンサルティング株式会社｜外国人経営者向けコンサルティング" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:type" content="website" />
+  {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:title" content={title} />
+  <meta property="twitter:description" content={description} />
+  <meta property="twitter:image" content={ogImage} />
+
+  <!-- Icons -->
+  <link rel="icon" type="image/png" href="/assets/storage.googleapis.com/production-os-assets/assets/83e6b6fd-d753-43c0-a7fd-87d82910d263" />
+  <link rel="apple-touch-icon" type="image/png" href="/assets/storage.googleapis.com/production-os-assets/assets/83e6b6fd-d753-43c0-a7fd-87d82910d263" />
+  {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+
+  <!-- Fonts & Core Stylesheets -->
+  <style is:global>
+    :root {
+      --s-color-90ba6ad1: #1aa583ff;
+      --s-color-d8b8d223: #0f876aff;
+      --s-color-15956284: #ffffffff;
+      --s-color-6dbe09e7: #f1eee8ff;
+      --s-color-2da9f51e: #f5f5f5ff;
+      --s-color-9a938a70: #292929ff;
+      --s-color-2a9c7810: #666666ff;
+      --s-color-7db87864: #d6d6d6ff;
+      --s-color-0585a4b9: #e2e2e2ff;
+      --s-font-3c90ade0: 'Open Sans','こぶりなゴシック W3 JIS2004',sans-serif;
+      --s-font-25941c40: 'Open Sans','こぶりなゴシック W6 JIS2004',sans-serif;
+      --s-font-3c956f42: Inter,sans-serif;
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: var(--s-font-3c90ade0);
+      color: #333;
+      background: #ffffff;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Mobile drawer navigation modal */
+    .mobile-nav-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0, 0, 0, 0.4);
+    }
+    .mobile-nav-modal.is-open {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .mobile-nav-drawer {
+      width: 100%;
+      max-width: 520px;
+      height: 100%;
+      background: #ffffff;
+      overflow-y: auto;
+      box-sizing: border-box;
+      padding: 32px 24px 40px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: -4px 0 24px rgba(0, 0, 0, 0.15);
+      position: relative;
+    }
+    .mobile-nav-close {
+      align-self: flex-end;
+      background: none;
+      border: none;
+      font-size: 28px;
+      line-height: 1;
+      cursor: pointer;
+      padding: 8px;
+      color: #292929;
+    }
+    .mobile-nav-links {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0px;
+    }
+    .mobile-nav-links > li {
+      border-bottom: 1px solid #e2e2e2;
+      padding: 14px 0;
+    }
+    .mobile-nav-links a {
+      color: #292929;
+      text-decoration: none;
+      font-size: 17px;
+      font-weight: 400;
+      display: block;
+    }
+    .mobile-nav-sublinks {
+      list-style: none;
+      padding: 10px 0 4px 16px;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .mobile-nav-sublinks a {
+      font-size: 15px;
+      color: #666;
+    }
+    .mobile-nav-contact {
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .mobile-nav-phone {
+      background: #f1eee8;
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+      text-decoration: none;
+      color: #292929;
+    }
+    .mobile-nav-phone .num {
+      font-weight: 700;
+      font-size: 20px;
+      color: #292929;
+    }
+    .mobile-nav-phone .hours {
+      font-size: 12px;
+      color: #666;
+      margin-top: 4px;
+    }
+    .mobile-nav-btn {
+      background: #1aa583;
+      color: #ffffff !important;
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 16px;
+    }
+  </style>
+  <slot name="head" />
+</head>
+<body>
+  <div id="__site-root">
+    <slot />
+  </div>
+
+  <!-- Mobile Drawer Modal -->
+  <div id="mobile-drawer" class="mobile-nav-modal" role="dialog" aria-modal="true" aria-label="モバイルメニュー">
+    <div class="mobile-nav-drawer">
+      <button id="mobile-drawer-close" class="mobile-nav-close" aria-label="メニューを閉じる">✕</button>
+      <ul class="mobile-nav-links">
+        <li><a href="/">トップページ</a></li>
+        <li>
+          <a href="/service">業務分野</a>
+          <ul class="mobile-nav-sublinks">
+            <li><a href="/service/startup">・ 在日経営コンサルティング支援</a></li>
+            <li><a href="/service/accounting">・ 組織運営・コミュニケーション支援</a></li>
+            <li><a href="/service/inheritance">・ 専門家連携サポート</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="/company">事務所について</a>
+          <ul class="mobile-nav-sublinks">
+            <li><a href="/company#message">・ 代表のあいさつ</a></li>
+            <li><a href="/company#philosophy">・ 経営理念</a></li>
+            <li><a href="/company#team">・ スタッフ紹介</a></li>
+            <li><a href="/company#overview">・ 事務所概要・アクセス</a></li>
+          </ul>
+        </li>
+        <li><a href="/#voice">お客様の声</a></li>
+        <li><a href="/news">お知らせ</a></li>
+        <li><a href="/faq">よくあるご質問</a></li>
+      </ul>
+      <div class="mobile-nav-contact">
+        <a href="tel:06-7172-3752" class="mobile-nav-phone">
+          <div class="num">📞 06-7172-3752</div>
+          <div class="hours">平日 9:00〜18:00</div>
+        </a>
+        <a href="/contact" class="mobile-nav-btn">お問い合わせフォーム →</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Mobile Drawer Navigation
+      const modal = document.getElementById('mobile-drawer');
+      const closeBtn = document.getElementById('mobile-drawer-close');
+      const openBtns = document.querySelectorAll('button.link.sd[type="button"], button[aria-label="メニューを開く"], header button.link');
+
+      openBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (modal) {
+            modal.classList.add('is-open');
+            document.body.style.overflow = 'hidden';
+          }
+        });
+      });
+
+      if (closeBtn && modal) {
+        closeBtn.addEventListener('click', () => {
+          modal.classList.remove('is-open');
+          document.body.style.overflow = '';
+        });
+
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) {
+            modal.classList.remove('is-open');
+            document.body.style.overflow = '';
+          }
+        });
+
+        modal.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            modal.classList.remove('is-open');
+            document.body.style.overflow = '';
+          });
+        });
+      }
+
+      // 2. FAQ Accordion Click Behavior
+      const faqButtons = document.querySelectorAll('button[id^="studio-toggle-button-"]');
+      faqButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const parentItem = btn.closest('.sd');
+          const toggleContent = parentItem ? parentItem.querySelector('[id^="studio-toggle-content-"]') : null;
+          if (!parentItem || !toggleContent) return;
+
+          const isClosed = parentItem.classList.contains('_isClose');
+          if (isClosed) {
+            parentItem.classList.remove('_isClose');
+            btn.classList.remove('_isClose');
+            toggleContent.classList.remove('_isClose');
+            btn.setAttribute('aria-expanded', 'true');
+            toggleContent.setAttribute('aria-hidden', 'false');
+          } else {
+            parentItem.classList.add('_isClose');
+            btn.classList.add('_isClose');
+            toggleContent.classList.add('_isClose');
+            btn.setAttribute('aria-expanded', 'false');
+            toggleContent.setAttribute('aria-hidden', 'true');
+          }
+        });
+      });
+
+      // 3. Carousel Navigation
+      const carousels = document.querySelectorAll<HTMLElement>('[data-type="carousel"]');
+      carousels.forEach(carousel => {
+        const prevBtn = carousel.querySelector<HTMLButtonElement>('button[aria-label="Prev Slide"]');
+        const nextBtn = carousel.querySelector<HTMLButtonElement>('button[aria-label="Next Slide"]');
+        const slides = carousel.querySelectorAll<HTMLElement>('.sd[data-s-8547a618-0363-45a8-98c7-11b6a695804c], [data-s-8547a618-0363-45a8-98c7-11b6a695804c]');
+        if (!slides.length) return;
+
+        carousel.style.overflowX = 'auto';
+        carousel.style.scrollBehavior = 'smooth';
+        carousel.style.scrollbarWidth = 'none';
+
+        if (prevBtn) {
+          prevBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const slideWidth = slides[0].getBoundingClientRect().width;
+            carousel.scrollBy({ left: -slideWidth, behavior: 'smooth' });
+          });
+        }
+
+        if (nextBtn) {
+          nextBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const slideWidth = slides[0].getBoundingClientRect().width;
+            carousel.scrollBy({ left: slideWidth, behavior: 'smooth' });
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

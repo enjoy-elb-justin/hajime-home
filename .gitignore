@@ -1,0 +1,22 @@
+# Build & Output
+dist/
+.astro/
+
+# Dependencies
+node_modules/
+
+# Environment & Local files
+.env
+.env.*
+!.env.example
+
+# Wrangler / Cloudflare
+.wrangler/
+
+# OS / Editor files
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
