@@ -1,13 +1,13 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "hajime-home",
+  "account_id": "a1651c8169a23dc4f295145b0d949138",
   "compatibility_date": "2026-09-01",
-  "assets": {
-    "directory": "./dist",
-    "not_found_handling": "404-page",
-    "html_handling": "auto-trailing-slash"
-  },
-  "build": {
-    "command": "pnpm run build"
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "vars": {
+    "SITE_NAME": "HAJIMEコンサルティング株式会社",
+    "SITE_URL": "https://hajime-jp.co.jp"
   }
 }

@@ -12,7 +12,7 @@ interface Props {
 const {
   title = "HAJIMEコンサルティング株式会社｜外国人経営者向けコンサルティング",
   description = "HAJIMEコンサルティング株式会社のコーポレートサイト。日本で挑戦する外国人経営者が安心して成長するためのコンサルティングサービス。",
-  ogImage = "/assets/storage.googleapis.com/production-os-assets/assets/668d48e0-14a7-4194-ad1c-2a10b28450cb",
+  ogImage = "/images/common/og-image.jpg",
   canonicalUrl
 } = Astro.props;
 ---
@@ -42,8 +42,8 @@ const {
   <meta property="twitter:image" content={ogImage} />
 
   <!-- Icons -->
-  <link rel="icon" type="image/png" href="/assets/storage.googleapis.com/production-os-assets/assets/83e6b6fd-d753-43c0-a7fd-87d82910d263" />
-  <link rel="apple-touch-icon" type="image/png" href="/assets/storage.googleapis.com/production-os-assets/assets/83e6b6fd-d753-43c0-a7fd-87d82910d263" />
+  <link rel="icon" type="image/png" href="/images/common/favicon.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/images/common/favicon.png" />
   {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
 
   <!-- Fonts & Core Stylesheets -->

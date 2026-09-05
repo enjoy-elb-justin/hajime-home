@@ -1,0 +1,44 @@
+---
+import newsData from '../data/news.json';
+
+function formatDate(dateStr: string) {
+  const d = new Date(dateStr);
+  const year = d.getUTCFullYear();
+  const month = String(d.getUTCMonth() + 1).padStart(2, '0');
+  const day = String(d.getUTCDate()).padStart(2, '0');
+  return `${year}.${month}.${day}`;
+}
+---
+
+<div data-s-2c478274-9ab1-41b1-9225-467b4175f08a="" class="sd appear">
+  <div data-s-b6b08a4e-161e-4906-844d-b641e0599b5b="" class="sd">
+    <div data-s-c7b23c86-9009-4398-b394-5e6a7b7e66ba="" class="sd appear">
+      <div data-s-ba1c92cf-7f10-464d-a839-4dd90018cfdd="" class="sd appear">
+        <p data-s-5c344b35-d7c9-4e4e-9927-297c8a01844b="" class="text sd">News</p>
+        <h2 data-s-b48b9f10="" data-s-b68a0cc9-59dd-4852-b93b-23d62c61f896="" class="text sd appear">お知らせ</h2>
+      </div>
+      <a data-s-2d8b9a5a-ecdf-4c2e-82ed-5ea8300fc263="" href="/news" class="link sd appear">
+        <div data-s-8d5377ec-58f8-4fa7-a30e-bc5425ebb070="" class="sd appear">
+          <p data-s-6387c5c5-1c16-490d-84cb-0ae404cf21bf="" class="text sd appear">view all</p>
+          <div data-s-3dc8c8a3-4001-451d-8e4f-f2bbcea8e6af="" class="sd appear"></div>
+        </div>
+        <div data-s-4d292a52-1915-4e7a-a011-abb932678ca7="" class="sd appear">
+          <i data-s-cf300904-5707-4107-9048-53041872ff25="" class="icon fa-solid fa-arrow-right-long sd appear"></i>
+        </div>
+      </a>
+    </div>
+    <ul data-s-8f3e1764-d94c-430d-9024-641854bf4b6d="" class="sd appear">
+      {newsData.slice(0, 4).map((item) => (
+        <li data-s-487b40b5-0d03-4844-9c56-fff9d5b4c577="" class="sd">
+          <a data-s-6f877ac0-7885-4ff6-904c-7ad9187a503d="" href={`/news/${item.default.slug}`} class="link sd appear">
+            <div data-s-56a57bda-070e-412e-a5ff-2c7331a4ecb8="" class="sd appear">
+              <p data-s-e9b3d0fe-545d-49c2-b760-9c8129165d46="" class="text sd appear">{formatDate(item._meta.publishedAt)}</p>
+              <p data-s-47d76d7b-f4d6-45fd-8ccc-342925c775d8="" class="text sd appear"></p>
+            </div>
+            <h3 data-s-1937f95e-fb8e-435b-b940-2a8ff629e62a="" class="text sd appear">{item.default.title}</h3>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</div>
