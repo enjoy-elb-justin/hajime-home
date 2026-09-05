@@ -46,7 +46,9 @@ const {
   <link rel="apple-touch-icon" type="image/png" href="/images/common/favicon.png" />
   {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
   <script is:inline>
+    document.documentElement.classList.add('motion-preparing');
     if (location.pathname === '/') document.documentElement.classList.add('home-splash-pending');
+    window.setTimeout(() => document.documentElement.classList.remove('motion-preparing'), 3000);
   </script>
 
   <!-- Fonts & Core Stylesheets -->
@@ -73,6 +75,18 @@ const {
       color: #333;
       background: #ffffff;
       -webkit-font-smoothing: antialiased;
+    }
+
+    html.motion-preparing:not(.home-splash-pending) #__site-root {
+      visibility: hidden;
+    }
+    html.motion-preparing #__site-root,
+    html.motion-preparing #__site-root * {
+      animation: none !important;
+      transition-property: none !important;
+    }
+    .motion-measuring {
+      transition-property: none !important;
     }
 
     /* Mobile drawer navigation modal */
