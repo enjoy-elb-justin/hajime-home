@@ -39,9 +39,11 @@ export default defineConfig({
   "compatibility_date": "2026-09-01",
   "assets": {
     "directory": "./dist",
-    "binding": "ASSETS",
     "not_found_handling": "404-page",
     "html_handling": "auto-trailing-slash"
+  },
+  "build": {
+    "command": "pnpm run build"
   }
 }
 ```
