@@ -9,6 +9,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "cf:types": "wrangler types --include-runtime false",
     "deploy": "astro build && wrangler deploy",
     "cf:upload": "astro build && wrangler versions upload",
     "astro": "astro"
@@ -17,6 +18,7 @@
     "@astrojs/check": "^0.9.10",
     "@astrojs/cloudflare": "^14.3.0",
     "@astrojs/sitemap": "^3.7.4",
+    "@cloudflare/workers-types": "^5.20260905.1",
     "astro": "^7.3.1",
     "typescript": "^5.9.3",
     "wrangler": "^4.129.0"

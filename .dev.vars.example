@@ -1,0 +1,11 @@
+# Copy this file to .dev.vars for local email testing.
+# Keep the real API key out of Git.
+BREVO_API_KEY=xkeysib-your-brevo-api-key-here
+
+BREVO_SENDER_NAME=HAJIMEコンサルティング株式会社
+BREVO_SENDER_EMAIL=notify@hajime-jp.co.jp
+
+CONTACT_RECIPIENT_NAME=HAJIMEコンサルティング株式会社
+CONTACT_RECIPIENT_EMAIL=info@hajime-jp.co.jp
+CONTACT_REPLY_TO_NAME=HAJIMEコンサルティング株式会社
+CONTACT_REPLY_TO_EMAIL=info@hajime-jp.co.jp

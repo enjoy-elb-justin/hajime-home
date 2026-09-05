@@ -2,12 +2,37 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "hajime-home",
   "account_id": "a1651c8169a23dc4f295145b0d949138",
+  "main": "@astrojs/cloudflare/entrypoints/server",
   "compatibility_date": "2026-09-01",
   "compatibility_flags": [
     "nodejs_compat"
   ],
+  "assets": {
+    "binding": "ASSETS"
+  },
+  "r2_buckets": [
+    {
+      "binding": "R2_ASSETS",
+      "bucket_name": "hajime-home-storage"
+    }
+  ],
+  "kv_namespaces": [
+    {
+      "binding": "KV",
+      "id": "4594963162ef42a392ae4592ba1af62b"
+    }
+  ],
   "vars": {
     "SITE_NAME": "HAJIMEコンサルティング株式会社",
-    "SITE_URL": "https://hajime-jp.co.jp"
+    "SITE_URL": "https://hajime-jp.co.jp",
+    "BREVO_SENDER_NAME": "HAJIMEコンサルティング株式会社",
+    "BREVO_SENDER_EMAIL": "notify@hajime-jp.co.jp",
+    "CONTACT_RECIPIENT_NAME": "HAJIMEコンサルティング株式会社",
+    "CONTACT_RECIPIENT_EMAIL": "info@hajime-jp.co.jp",
+    "CONTACT_REPLY_TO_NAME": "HAJIMEコンサルティング株式会社",
+    "CONTACT_REPLY_TO_EMAIL": "info@hajime-jp.co.jp"
+  },
+  "observability": {
+    "enabled": true
   }
 }
