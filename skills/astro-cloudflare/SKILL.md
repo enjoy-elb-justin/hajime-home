@@ -31,8 +31,8 @@ export default defineConfig({
 });
 ```
 
-### `wrangler.jsonc`
-```jsonc
+### `wrangler.json`
+```json
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "hajime-home",
@@ -46,6 +46,16 @@ export default defineConfig({
     "command": "pnpm run build"
   }
 }
+```
+
+### `pnpm-workspace.yaml`
+```yaml
+packages:
+  - '.'
+
+allowBuilds:
+  esbuild: true
+  workerd: true
 ```
 
 ## 3. 从 Studio Design / Playwright 归档迁移的最佳实践
@@ -62,14 +72,15 @@ export default defineConfig({
    - 借助 Astro 的 `getStaticPaths()` 自动生成所有详情页与列表页，实现增删文章仅需改动 JSON 或 Markdown。
 4. **验证与完整性自检机制**：
    - 提供 `scripts/verify-dist.mjs`，构建后自动扫描 `dist/` 下全部 HTML，检测是否有失效的本地资源引用或漏处理的外部资源。
-5. **包管理约束**：
+5. **包管理与引擎约束**：
    - 全程使用 `pnpm` 安装与运行任务。
+   - 配置 `"engines": { "node": ">=24.0.0" }` 并使用 `pnpm-workspace.yaml` 授权构建。
 
 ---
 
 ## 4. Cloudflare Dashboard (GitHub Connect) 推荐配置
 
-本项目采用 Cloudflare 现代化的 **Workers Static Assets** 架构部署，也可以直接通过 **Pages** 托管。
+本项目采用与 `elb-re` 一致的高标准配置：
 
 ### 方式 A：Cloudflare Workers (Builds / Connected to Git) - 推荐
 在 Cloudflare 控制台导航至 **Compute (Workers & Pages)** -> **Create application** -> **Workers** -> **Connect to Git**：
@@ -77,16 +88,13 @@ export default defineConfig({
 2. **Build Settings**:
    - **Framework preset**: `None` 或 `Astro`
    - **Build command**: `pnpm run build`
-   - **Deploy command**: `npx wrangler deploy`
-3. **Environment Variables**:
-   - `NODE_VERSION`: `22`（项目已内置 `.nvmrc`，自动读取）
-4. **Wrangler 配置文件**:
-   - 自动检测并读取根目录下的 `wrangler.jsonc`，识别静态产物路径 `assets.directory: "./dist"`。
+   - **Deploy command**: `npx wrangler versions upload` (或 `pnpm run cf:upload`)
+3. **Wrangler 配置文件**:
+   - 自动检测并读取根目录下的 `wrangler.json`，识别静态产物路径 `assets.directory: "./dist"` 与 `build.command`。
 
 ### 方式 B：Cloudflare Pages (Git Integration)
 如果选择通过 Pages 界面连接：
 1. **Framework preset**: `Astro`
 2. **Build command**: `pnpm run build`
 3. **Build output directory**: `dist`
-4. **Environment Variables**:
-   - `NODE_VERSION`: `22`
+
