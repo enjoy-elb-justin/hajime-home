@@ -45,6 +45,9 @@ const {
   <link rel="icon" type="image/png" href="/images/common/favicon.png" />
   <link rel="apple-touch-icon" type="image/png" href="/images/common/favicon.png" />
   {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+  <script is:inline>
+    if (location.pathname === '/') document.documentElement.classList.add('home-splash-pending');
+  </script>
 
   <!-- Fonts & Core Stylesheets -->
   <style is:global>
@@ -74,15 +77,20 @@ const {
 
     /* Mobile drawer navigation modal */
     .mobile-nav-modal {
-      display: none;
+      display: flex;
+      justify-content: flex-end;
       position: fixed;
       inset: 0;
       z-index: 9999;
       background: rgba(0, 0, 0, 0.4);
+      opacity: 0;
+      transition: opacity 400ms cubic-bezier(0.4, 0.4, 0, 1);
     }
-    .mobile-nav-modal.is-open {
-      display: flex;
-      justify-content: flex-end;
+    .mobile-nav-modal[hidden] {
+      display: none;
+    }
+    .mobile-nav-modal[data-state="open"] {
+      opacity: 1;
     }
     .mobile-nav-drawer {
       width: 100%;
@@ -96,6 +104,12 @@ const {
       flex-direction: column;
       box-shadow: -4px 0 24px rgba(0, 0, 0, 0.15);
       position: relative;
+      transform: translate3d(100%, 0, 0);
+      transition: transform 400ms cubic-bezier(0.4, 0.4, 0, 1);
+      outline: none;
+    }
+    .mobile-nav-modal[data-state="open"] .mobile-nav-drawer {
+      transform: translate3d(0, 0, 0);
     }
     .mobile-nav-close {
       align-self: flex-end;
@@ -172,7 +186,66 @@ const {
       text-decoration: none;
       font-size: 16px;
     }
+
+    [data-home-loader][data-splash-state="running"] {
+      z-index: 9998 !important;
+      pointer-events: none;
+    }
+    [data-home-loader][hidden] {
+      display: none !important;
+    }
+    html.home-splash-pending [data-s-781552d3-2b09-48aa-8fa4-d3c79fa027fd] {
+      opacity: 1;
+      z-index: 9998;
+    }
+    html.home-splash-pending [data-s-fc4fdcb9-b360-481b-af55-a37f302dadf0] {
+      opacity: 0;
+    }
+    html.home-splash-active,
+    html.home-splash-active body {
+      overflow: hidden;
+    }
+
+    #overview {
+      scroll-margin-top: 96px;
+    }
+
+    .faq-list-link {
+      color: inherit;
+      display: contents;
+      text-decoration: none;
+    }
+    .faq-list-link:focus-visible > .sd {
+      outline: 2px solid var(--s-color-90ba6ad1);
+      outline-offset: 4px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .mobile-nav-modal,
+      .mobile-nav-drawer {
+        transition-duration: 0.01ms !important;
+      }
+    }
   </style>
+  <noscript>
+    <style>
+      [data-home-loader], [data-s-781552d3-2b09-48aa-8fa4-d3c79fa027fd] { display: none !important; }
+      [data-home-content], [data-s-fc4fdcb9-b360-481b-af55-a37f302dadf0], .appear {
+        opacity: 1 !important;
+        translate: none !important;
+        scale: 1 !important;
+        transform: none !important;
+      }
+      [id^="studio-toggle-content-"] {
+        display: flex !important;
+        height: auto !important;
+        max-height: none !important;
+        opacity: 1 !important;
+        overflow: visible !important;
+        visibility: visible !important;
+      }
+    </style>
+  </noscript>
   <slot name="head" />
 </head>
 <body>
@@ -181,9 +254,9 @@ const {
   </div>
 
   <!-- Mobile Drawer Modal -->
-  <div id="mobile-drawer" class="mobile-nav-modal" role="dialog" aria-modal="true" aria-label="モバイルメニュー">
-    <div class="mobile-nav-drawer">
-      <button id="mobile-drawer-close" class="mobile-nav-close" aria-label="メニューを閉じる">✕</button>
+  <div id="mobile-drawer" class="mobile-nav-modal" role="dialog" aria-modal="true" aria-label="モバイルメニュー" data-state="closed" hidden>
+    <div class="mobile-nav-drawer" tabindex="-1">
+      <button id="mobile-drawer-close" class="mobile-nav-close" type="button" aria-label="メニューを閉じる">✕</button>
       <ul class="mobile-nav-links">
         <li><a href="/">トップページ</a></li>
         <li>
@@ -218,98 +291,27 @@ const {
   </div>
 
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // 1. Mobile Drawer Navigation
-      const modal = document.getElementById('mobile-drawer');
-      const closeBtn = document.getElementById('mobile-drawer-close');
-      const openBtns = document.querySelectorAll('button.link.sd[type="button"], button[aria-label="メニューを開く"], header button.link');
+    import { initAccordions } from '../scripts/accordion';
+    import { initAppear } from '../scripts/appear';
+    import { initCarousels } from '../scripts/carousel';
+    import { initContentFixes } from '../scripts/content-fixes';
+    import { initHomeSplash } from '../scripts/home-splash';
+    import { initMobileNav } from '../scripts/mobile-nav';
 
-      openBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          e.preventDefault();
-          if (modal) {
-            modal.classList.add('is-open');
-            document.body.style.overflow = 'hidden';
-          }
-        });
-      });
+    const initializeInteractions = () => {
+      initHomeSplash();
+      initAccordions();
+      initCarousels();
+      initContentFixes();
+      initMobileNav();
+      initAppear();
+    };
 
-      if (closeBtn && modal) {
-        closeBtn.addEventListener('click', () => {
-          modal.classList.remove('is-open');
-          document.body.style.overflow = '';
-        });
-
-        modal.addEventListener('click', (e) => {
-          if (e.target === modal) {
-            modal.classList.remove('is-open');
-            document.body.style.overflow = '';
-          }
-        });
-
-        modal.querySelectorAll('a').forEach(link => {
-          link.addEventListener('click', () => {
-            modal.classList.remove('is-open');
-            document.body.style.overflow = '';
-          });
-        });
-      }
-
-      // 2. FAQ Accordion Click Behavior
-      const faqButtons = document.querySelectorAll('button[id^="studio-toggle-button-"]');
-      faqButtons.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          e.preventDefault();
-          const parentItem = btn.closest('.sd');
-          const toggleContent = parentItem ? parentItem.querySelector('[id^="studio-toggle-content-"]') : null;
-          if (!parentItem || !toggleContent) return;
-
-          const isClosed = parentItem.classList.contains('_isClose');
-          if (isClosed) {
-            parentItem.classList.remove('_isClose');
-            btn.classList.remove('_isClose');
-            toggleContent.classList.remove('_isClose');
-            btn.setAttribute('aria-expanded', 'true');
-            toggleContent.setAttribute('aria-hidden', 'false');
-          } else {
-            parentItem.classList.add('_isClose');
-            btn.classList.add('_isClose');
-            toggleContent.classList.add('_isClose');
-            btn.setAttribute('aria-expanded', 'false');
-            toggleContent.setAttribute('aria-hidden', 'true');
-          }
-        });
-      });
-
-      // 3. Carousel Navigation
-      const carousels = document.querySelectorAll<HTMLElement>('[data-type="carousel"]');
-      carousels.forEach(carousel => {
-        const prevBtn = carousel.querySelector<HTMLButtonElement>('button[aria-label="Prev Slide"]');
-        const nextBtn = carousel.querySelector<HTMLButtonElement>('button[aria-label="Next Slide"]');
-        const slides = carousel.querySelectorAll<HTMLElement>('.sd[data-s-8547a618-0363-45a8-98c7-11b6a695804c], [data-s-8547a618-0363-45a8-98c7-11b6a695804c]');
-        if (!slides.length) return;
-
-        carousel.style.overflowX = 'auto';
-        carousel.style.scrollBehavior = 'smooth';
-        carousel.style.scrollbarWidth = 'none';
-
-        if (prevBtn) {
-          prevBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            const slideWidth = slides[0].getBoundingClientRect().width;
-            carousel.scrollBy({ left: -slideWidth, behavior: 'smooth' });
-          });
-        }
-
-        if (nextBtn) {
-          nextBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            const slideWidth = slides[0].getBoundingClientRect().width;
-            carousel.scrollBy({ left: slideWidth, behavior: 'smooth' });
-          });
-        }
-      });
-    });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initializeInteractions, { once: true });
+    } else {
+      initializeInteractions();
+    }
   </script>
 </body>
 </html>

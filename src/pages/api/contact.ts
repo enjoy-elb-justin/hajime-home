@@ -10,9 +10,9 @@ export const prerender = false;
 
 const MAX_BODY_BYTES = 32 * 1024;
 const CONTACT_TYPES = new Set([
-  '創業支援のご相談',
-  '税務・会計顧問のご相談',
-  '相続・事業継承のご相談',
+  '在日経営コンサルティング支援のご相談',
+  '組織運営・コミュニケーション支援のご相談',
+  '専門家連携サポートのご相談',
   'その他',
 ]);
 

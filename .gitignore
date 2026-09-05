@@ -4,6 +4,7 @@ dist/
 
 # Dependencies
 node_modules/
+.pnpm-store/
 
 # Environment & Local files
 .env

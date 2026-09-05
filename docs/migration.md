@@ -3,21 +3,21 @@
 > 审计日期：2026-09-05  
 > 线上基准：<https://hajime-jp.co.jp/>  
 > 本地基准：Git `ffdcb60`，Astro 开发服务器  
-> 本文记录问题、原站机制、迁移方案与实施状态。联系表单邮件链路已于本次后续工作中实现，其余交互/动画仍仅记录方案。
+> 本文记录问题、原站机制、迁移方案与实施状态。文中列出的交互、动画、联系表单与 Cloudflare bindings 已在 2026-09-05 的后续实施中完成；尚未执行生产部署或真实邮件投递。
 
 ## 1. 结论与实施顺序
 
-当前迁移保留了大部分 STUDIO 导出的 DOM、`data-s-*` 属性和动画 CSS，但只迁移了少量自写交互脚本。原站真正负责状态切换的 Nuxt/STUDIO runtime 没有迁移，因此出现了“样式还在，驱动样式的状态机不在”的情况。
+迁移前版本保留了大部分 STUDIO 导出的 DOM、`data-s-*` 属性和动画 CSS，但只带少量自写交互脚本。原站真正负责状态切换的 Nuxt/STUDIO runtime 没有迁移，因此出现了“样式还在，驱动样式的状态机不在”的情况；本次以小型原生 TypeScript 状态机补齐这些行为。
 
-建议按以下顺序处理：
+已按以下顺序完成实施：
 
-1. **P0：修复所有 accordion**：不仅是 `/faq` 的 10 项，三个服务详情页的 8 项也受同一问题影响。
-2. **P0：联系表单提交链路（已实现，待部署配置）**：已改为 Worker API + Brevo 邮件投递，不再把内容放进 URL。
-3. **P1：恢复全站滚动显现机制**：14 个页面模板保留了 161 条 `.appear` 规则，其中 97 条包含实际的透明度/位移/缩放起始状态。
-4. **P1：恢复首页 logo splash 和首屏交叉淡入**。
-5. **P1：恢复首页客户声轮播的自动播放、无限循环和可访问状态**。
-6. **P1：补齐移动菜单的动画、键盘和焦点行为**。
-7. **P2：修复 footer 地址图标链接，并处理审计中发现的其他死链/静态 CTA/旧文案。**
+1. **P0：所有 accordion（已完成）**：`/faq` 的 10 项与三个服务详情页的 8 项共用同一控制器。
+2. **P0：联系表单提交链路（已完成）**：已改为 Worker API + Brevo 邮件投递，不再把内容放进 URL。
+3. **P1：全站滚动显现（已完成）**：复用原有 `.appear` CSS，由共享 `IntersectionObserver` 驱动。
+4. **P1：首页 logo splash（已完成）**：恢复原站 1600ms 延迟与 600/800ms 交叉淡入淡出。
+5. **P1：首页客户声轮播（已完成）**：恢复自动播放、边界归一和可访问状态。
+6. **P1：移动菜单（已完成）**：补齐动画、Escape、焦点陷阱/归还和背景 inert。
+7. **P2：链接与文案（已完成）**：footer 地址、FAQ CTA、已知死链、FAQ 分类标签及品牌残留均已处理。
 
 不建议把线上整套 Nuxt/STUDIO runtime 打包进 Astro。它体积大、耦合页面模型，而且违背本项目“仅为真实交互注入少量 JS”的目标。应迁移原站的行为和时序，以小型原生 TypeScript 模块实现。
 
@@ -27,10 +27,10 @@
 
 | 页面 | 数量 | 当前状态 |
 | --- | ---: | --- |
-| `/faq` | 10 | 全部无法展开 |
-| `/service/startup` | 4 | 全部无法展开 |
-| `/service/accounting` | 2 | 全部无法展开 |
-| `/service/inheritance` | 2 | 全部无法展开 |
+| `/faq` | 10 | 已修复 |
+| `/service/startup` | 4 | 已修复 |
+| `/service/accounting` | 2 | 已修复 |
+| `/service/inheritance` | 2 | 已修复 |
 
 对应文件：
 
@@ -40,9 +40,13 @@
 - `src/pages/service/inheritance.astro`
 - 公共脚本：`src/layouts/Layout.astro`
 
+### 实施状态
+
+已新增 `src/scripts/accordion.ts`，按 `aria-controls` 精确关联 panel，以最近的 `<ul>` 分组，并复刻原站约 `300ms cubic-bezier(0.4, 0.4, 0, 1)` 的动态高度过渡。控制器同步 `_isClose`、`aria-expanded`、`aria-hidden` 与 `inert`，清理快速反向点击留下的监听器/内联高度；reduced motion 下即时切换。
+
 ### 已确认的根因
 
-`Layout.astro` 当前使用：
+迁移前的 `Layout.astro` 使用：
 
 ```ts
 const parentItem = btn.closest('.sd');
@@ -52,9 +56,9 @@ const parentItem = btn.closest('.sd');
 
 即使只把这一行改为 `btn.parentElement`，仍然没有完整复刻原站：
 
-- 当前脚本只切换父节点、按钮和答案容器三个节点；原站会把 `_isClose` 状态传给该 toggle 下的后代，问号、答案正文和加号竖线的状态也会一起更新。
-- 当前脚本直接切 class，没有高度测量，无法得到原站的平滑自适应高度动画。
-- 当前脚本允许多项同时打开；线上实测为同一列表中只保持一项打开，打开下一项会关闭上一项。
+- 旧脚本只切换父节点、按钮和答案容器三个节点；原站会把 `_isClose` 状态传给该 toggle 下的后代，问号、答案正文和加号竖线的状态也会一起更新。
+- 旧脚本直接切 class，没有高度测量，无法得到原站的平滑自适应高度动画。
+- 旧脚本允许多项同时打开；线上实测为同一列表中只保持一项打开，打开下一项会关闭上一项。
 
 ### 原站机制（已从线上行为和 runtime 确认）
 
@@ -97,11 +101,11 @@ const parentItem = btn.closest('.sd');
 - `aria-expanded`、`aria-hidden`、`aria-controls`、`aria-labelledby` 始终一致。
 - JS 失败时问题文本仍可见；如需要完整无 JS 降级，可改为 `<details>/<summary>`，但这会增加对现有 STUDIO 样式的改造量。
 
-## 3. P0：联系表单邮件链路（已实现，待部署配置）
+## 3. P0：联系表单邮件链路（已实现）
 
 ### 原问题
 
-线上 `/contact` 的 `<form>` 没有 HTML `action`，由 STUDIO runtime 接管校验和提交。当前 Astro 版本改成：
+线上 `/contact` 的 `<form>` 没有 HTML `action`，由 STUDIO runtime 接管校验和提交。迁移前的 Astro 版本改成：
 
 ```html
 <form action="/contact/thanks" method="GET" novalidate>
@@ -150,7 +154,11 @@ pnpm wrangler secret put BREVO_API_KEY
 
 ## 4. P1：全站逐步显现动画未迁移
 
-### 当前状态
+### 实施状态
+
+已新增 `src/scripts/appear.ts`。共享 observer 为每个节点维护 `pending / running / done` 状态，首次进入视口后解除观察并按原站的双 `requestAnimationFrame` 顺序显现；不支持 observer、无 JS 与 reduced motion 时均直接显示内容。首页 splash 的两个专用节点从通用 observer 中排除，避免两套状态机竞争。
+
+### 迁移前状态
 
 页面 CSS 已保留 STUDIO 生成的两类规则：
 
@@ -159,7 +167,7 @@ pnpm wrangler secret put BREVO_API_KEY
 .sd[data-s-...].appear-active { /* 原始 transition 参数 */ }
 ```
 
-但 `Layout.astro` 没有负责观察元素并切换 `appear` / `appear-active` 的逻辑。当前静态 HTML 又是从某一个运行完成或运行中的 DOM 状态抓取的，所以不同节点处于不一致的快照状态：有些保留 `appear`，有些已经没有。结果不是简单的“统一关闭动画”，而是无法可靠重放原始时序。
+但迁移前的 `Layout.astro` 没有负责观察元素并切换 `appear` / `appear-active` 的逻辑。静态 HTML 又是从某一个运行完成或运行中的 DOM 状态抓取的，所以不同节点处于不一致的快照状态：有些保留 `appear`，有些已经没有。结果不是简单的“统一关闭动画”，而是无法可靠重放原始时序。
 
 审计到以下页面模板仍含 `.appear` 规则：
 
@@ -209,6 +217,10 @@ pnpm wrangler secret put BREVO_API_KEY
 
 ## 5. P1：首页 logo splash 与页面交叉淡入缺失
 
+### 实施状态
+
+已新增 `src/scripts/home-splash.ts`，并在 `<head>` 的最早阶段给首页根节点建立 pending 状态，防止页面终态先闪现。动画完成后 loader 同时设置 `hidden` 与强制 `display: none`，页面解除 `inert`；2500ms 正常结束，3200ms 兜底释放，reduced motion 与 `<noscript>` 均直接进入可用终态。
+
 ### 线上实测时序
 
 首页已有两个专用节点和完整 CSS：
@@ -224,7 +236,7 @@ pnpm wrangler secret put BREVO_API_KEY
 
 现有 CSS 也给出了精确参数：两者都是 `1600ms` delay；logo 淡出 `600ms`，页面淡入 `800ms`。loader 图片宽度桌面约 `320px`，移动端为容器的 `70%`/`80%`，这些现有规则可直接保留。
 
-当前 Astro HTML 抓取的是终态：loader 没有 `appear` 且基础样式为 `opacity: 0; z-index: -1`，页面 wrapper 也没有 `appear`，所以刷新时直接显示页面。
+迁移前的 Astro HTML 抓取的是终态：loader 没有 `appear` 且基础样式为 `opacity: 0; z-index: -1`，页面 wrapper 也没有 `appear`，所以刷新时直接显示页面。
 
 ### 推荐迁移方案
 
@@ -246,9 +258,13 @@ pnpm wrangler secret put BREVO_API_KEY
 
 ## 6. P1：首页客户声轮播只迁移了一部分
 
-### 当前差异
+### 实施状态
 
-`Layout.astro` 当前把 `[data-type="carousel"]` 设置为横向 `overflow-x: auto`，Prev/Next 按一张卡片宽度调用 `scrollBy()`。本地实测 Next 的确能让 `scrollLeft` 从 0 移到约一张卡片宽度，因此手动按钮不是完全失效。
+已新增 `src/scripts/carousel.ts`，沿用抓取结果中已存在的 7 张循环 slide，恢复 5200ms 自动前进、1600ms transform 过渡、首尾无动画归一、Prev/Next、hover/focus/页面隐藏暂停，以及当前 slide 的 `aria-hidden`/`inert` 状态。reduced motion 下停用自动播放并即时切换。
+
+### 迁移前差异
+
+迁移前的 `Layout.astro` 把 `[data-type="carousel"]` 设置为横向 `overflow-x: auto`，Prev/Next 按一张卡片宽度调用 `scrollBy()`。当时实测 Next 的确能让 `scrollLeft` 从 0 移到约一张卡片宽度，因此手动按钮不是完全失效。
 
 但线上原站还有以下行为，本地没有：
 
@@ -259,7 +275,7 @@ pnpm wrangler secret put BREVO_API_KEY
 - 到边界后的无跳变重排。
 - 原 runtime 还包含 hover pause、reduced-motion 和尺寸变化后的重新布局逻辑。
 
-当前静态 HTML 固化了抓取时的 7 个克隆和 `__ariaHidden` class，但这些状态不会更新，也没有可靠的 `aria-hidden`/`inert` 行为。
+迁移前的静态 HTML 固化了抓取时的 7 个克隆和 `__ariaHidden` class，但这些状态不会更新，也没有可靠的 `aria-hidden`/`inert` 行为。
 
 ### 推荐迁移方案
 
@@ -283,9 +299,13 @@ pnpm wrangler secret put BREVO_API_KEY
 
 ## 7. P1：移动菜单能打开，但不等价于原站
 
-### 当前状态
+### 实施状态
 
-Astro 版本在 `Layout.astro` 中新写了一个 `.mobile-nav-modal`。它支持：
+已新增 `src/scripts/mobile-nav.ts`，使用 `opening / open / closing / closed` 状态恢复约 400ms 的抽屉过渡，并补齐 Escape、焦点陷阱、初始焦点、焦点归还、背景 `inert`、滚动锁与桌面断点清理。Header 的开关按钮已补全 `aria-label`、`aria-controls` 与 `aria-expanded`。
+
+### 迁移前状态
+
+迁移前的 Astro 版本在 `Layout.astro` 中写了一个 `.mobile-nav-modal`。它支持：
 
 - 汉堡按钮打开。
 - 关闭按钮、点击 backdrop、点击菜单链接关闭。
@@ -319,7 +339,11 @@ Astro 版本在 `Layout.astro` 中新写了一个 `.mobile-nav-modal`。它支�
 
 ## 8. P2：footer 地址图标应链接到事务所概要
 
-当前 `src/components/Footer.astro` 中地址与外链样式图标都放在普通 `<div>` 内，没有 `<a>`；线上当前 DOM 也同样没有 href。这是明确的目标修正，而不是可以直接从原站复制的现成功能。
+### 实施状态
+
+已把“地址 + 图标”整体改为真实的 `/company#overview` 链接，补充可读 `aria-label`，并为 `#overview` 设置 header 偏移所需的 `scroll-margin-top`。浏览器实测点击后可到达目标锚点。
+
+迁移前 `src/components/Footer.astro` 中地址与外链样式图标都放在普通 `<div>` 内，没有 `<a>`；线上当前 DOM 也同样没有 href。这是明确的目标修正，而不是可以直接从原站复制的现成功能。
 
 推荐把“地址 + 图标”整体设为链接，点击面积和语义优于只包住小图标：
 
@@ -339,7 +363,9 @@ Astro 版本在 `Layout.astro` 中新写了一个 `.mobile-nav-modal`。它支�
 
 ### 9.1 服务详情页“FAQ 一覧を見る”是静态装饰
 
-三个服务详情页的“一覧を見る →”在线上和本地都是普通 `<div>`，不是链接。视觉上明显像 CTA，推荐改为 `/faq` 链接。
+迁移前三个服务详情页的“一覧を見る →”在线上和本地都是普通 `<div>`，不是链接。视觉上明显像 CTA，推荐改为 `/faq` 链接。
+
+**已处理：** `src/scripts/content-fixes.ts` 在保留 STUDIO 结构与样式的同时，把三个 CTA 包装为 `/faq` 链接，并补充可读标签。
 
 ### 9.2 两类已知 404 链接
 
@@ -348,9 +374,15 @@ Astro 版本在 `Layout.astro` 中新写了一个 `.mobile-nav-modal`。它支�
 
 需要业务确认是删除入口、补页面，还是修正到现有列表/分类路由。不要继续保留“看似可点击但必然 404”的入口。
 
+**已处理：** footer 删除当前没有目标页面的“採用情報”；news 详情分类入口回到 `/news`，voice 详情分类入口回到 `/voice`。
+
 ### 9.3 FAQ 分类导航文案与当前业务内容不一致
 
 `/faq` 顶部仍显示“#創業支援 / #税務・会計 / #相続・事業継承 / #ご契約・その他”，但实际四组标题已变为“サービスについて / 専門家連携について / 料金・契約について / ご契約・その他”。锚点本身可以跳转，但标签语义是旧站遗留，应同步当前内容。
+
+**已处理：** 四个服务端渲染标签已与当前分组标题同步，原锚点 id 保持不变，避免破坏既有深链接。
+
+联系表单的“ご用件”也曾保留旧业务分类；现已把前端选项与 Worker 服务端白名单一并同步为“在日経営コンサルティング支援 / 組織運営・コミュニケーション支援 / 専門家連携サポート / その他”。
 
 ### 9.4 旧品牌与拼写残留
 
@@ -361,6 +393,8 @@ Astro 版本在 `Layout.astro` 中新写了一个 `.mobile-nav-modal`。它支�
 
 这些在线上也存在，需由品牌/业务确认最终文案后统一修改。
 
+**已处理：** footer logo alt、copyright、首页 `Company` 拼写及 voice 详情正文中的旧品牌展示已统一为 `HAJIMEコンサルティング株式会社`。
+
 ### 9.5 当前正常、无需重做的部分
 
 - 桌面 header 的 Service/Company 下拉菜单由现有 `:hover` CSS 驱动，线上和本地都能从 `opacity: 0; scale: 1 1e-10` 过渡到可见状态。
@@ -369,7 +403,7 @@ Astro 版本在 `Layout.astro` 中新写了一个 `.mobile-nav-modal`。它支�
 
 ## 10. 推荐代码组织
 
-建议把 `Layout.astro` 现有的大段内联脚本拆为以下小模块：
+当前已把 `Layout.astro` 的交互拆为以下小模块：
 
 ```text
 src/scripts/
@@ -377,10 +411,11 @@ src/scripts/
 ├── appear.ts          # 全站一次性进入视口动画
 ├── mobile-nav.ts      # dialog、焦点和滚动锁
 ├── carousel.ts        # 首页客户声轮播
-└── contact-form.ts    # 可选：把当前 contact 页面内联的 POST 状态脚本抽出
+├── home-splash.ts     # 首页首次绘制与 logo 交叉淡入
+└── content-fixes.ts   # 抓取 DOM 中需要补为真实链接的 CTA
 ```
 
-首页 splash 可以放在 `src/pages/index.astro` 的短内联脚本中，以便在首次绘制前建立状态；其余模块由 `Layout.astro` 统一加载。每个模块都应在找不到目标节点时静默退出，确保只有需要该交互的页面承担运行成本。
+首页在 `Layout.astro` 的 `<head>` 中使用极短内联脚本建立首次绘制状态，其余逻辑以模块加载。每个模块在找不到目标节点时静默退出，确保只有需要该交互的页面承担运行成本。
 
 随机 `data-s-*` 可暂时作为视觉 CSS 的兼容层，但新脚本应优先使用稳定的 `data-*` hooks，例如：
 
@@ -424,9 +459,18 @@ data-mobile-nav
 
 - 已在浏览器中对线上与本地 FAQ、首页 loader、首页 carousel、桌面下拉菜单和移动菜单进行行为对照。
 - 已直接检查线上 Nuxt/STUDIO runtime 中的 `ToggleRenderer` 与 `IntersectionObserver` 逻辑；本文方案优先复刻其机制。
-- 联系表单实施后，`pnpm astro check` 为 0 error / 0 warning，`pnpm build` 完整通过。
-- `pnpm wrangler deploy --dry-run` 确认产物包含 13 个 Worker 模块、`/api/contact` 动态路由、369 个静态资产，以及 `ASSETS`、`R2_ASSETS`、`KV`、vars 等 bindings；部署目标不再是纯静态资产 Worker。
+- 18 个 accordion 已在真实浏览器覆盖鼠标、Enter、Space、单组单开、快速切换后的高度清理与 ARIA/inert 同步。
+- 首页硬刷新时记录到 0/700/1850ms 的 logo 可见且正文不可交互，约 2700ms loader 已 `hidden + display:none`、正文解除 inert；轮播也通过跨越循环边界后的索引归一验证。
+- 移动菜单在 390×844 视口通过打开、滚动锁、背景 inert、Escape 关闭和焦点归还；滚动显现的 pending 数会随锚点滚动下降，返回区域不会重新注册。
+- `pnpm astro check` 为 0 error / 0 warning / 0 hint，`NODE_OPTIONS=--trace-deprecation pnpm build` 完整通过，浏览器控制台无 error/warning。
+- `pnpm wrangler deploy --dry-run` 确认产物包含 13 个 Worker 模块、`/api/contact` 动态路由、370 个静态资产，以及 `ASSETS`、`R2_ASSETS`、`KV`、`SESSION`、`IMAGES` 和联系表单 vars；部署目标不再是纯静态资产 Worker。
 - 本地 API 验证覆盖：缺少必填字段返回 400、honeypot 静默成功、跨站 POST 被 Astro/Cloudflare origin 检查拒绝。真实 Brevo 投递需配置生产 `BREVO_API_KEY` 后再做端到端测试。
+
+### 13.1 Node `DEP0169` 警告
+
+`NODE_OPTIONS=--trace-deprecation pnpm outdated` 将警告定位到 Corepack 缓存的 pnpm 9.15.4：其鉴权配置解析函数 `toNerfDart()` 仍调用 Node 的 `url.parse()`。这不是 Astro 页面代码或联系表单 Worker 的调用。
+
+项目现已在 `package.json` 固定 `packageManager: "pnpm@10.34.5"`。重新安装依赖后，带 `--trace-deprecation` 的 `pnpm outdated`、`pnpm astro check`、`pnpm build` 与 Wrangler dry-run 均不再输出 `DEP0169`。不要通过 `NODE_NO_WARNINGS` 隐藏问题；新机器应启用 Corepack，让项目声明自动选择该版本。
 
 ## 14. Cloudflare R2 与 Workers Static Assets
 

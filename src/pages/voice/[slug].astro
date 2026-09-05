@@ -13,7 +13,8 @@ export function getStaticPaths() {
 
 const { item, allItems } = Astro.props;
 const title = item.default.title;
-const description = item.default.body.replace(/<[^>]+>/g, '').slice(0, 120);
+const body = item.default.body.replaceAll('おだやか会計事務所', 'HAJIMEコンサルティング株式会社');
+const description = body.replace(/<[^>]+>/g, '').slice(0, 120);
 const ogImage = "/images/common/og-image.jpg";
 
 const pubDate = new Date(item._meta.publishedAt);
@@ -489,15 +490,15 @@ br[data-bp~="@mini:1"]{display:inline;}
             <h1 data-s-856ac271-e849-4122-bba9-70cd3326c284="" data-r-0_0_0_1_856ac271-e849-4122-bba9-70cd3326c284="" class="text sd appear">{title}</h1>
             <div data-s-1ef4db06-dd2d-4fda-94dc-f5860a30e2f5="" class="sd appear">
               <div data-s-e64c1585-1150-4aed-b7c3-1e97899060d5="" class="sd appear">
-                <a data-s-561766f6-caef-4eb7-989b-d5cd39cd0dc3="" href="/news/category" data-r-0_0_1_0_0_1_561766f6-caef-4eb7-989b-d5cd39cd0dc3="" class="text link sd appear">{item.default.drG7fqRC}</a>
-                <a data-s-b82d4ad6-b881-488b-9b39-13fe04106961="" href="/news/category" data-r-1_0_1_0_0_1_b82d4ad6-b881-488b-9b39-13fe04106961="" class="text link sd appear">業種：</a>
+                <a data-s-561766f6-caef-4eb7-989b-d5cd39cd0dc3="" href="/voice" data-r-0_0_1_0_0_1_561766f6-caef-4eb7-989b-d5cd39cd0dc3="" class="text link sd appear">{item.default.drG7fqRC}</a>
+                <a data-s-b82d4ad6-b881-488b-9b39-13fe04106961="" href="/voice" data-r-1_0_1_0_0_1_b82d4ad6-b881-488b-9b39-13fe04106961="" class="text link sd appear">業種：</a>
               </div>
               <p data-s-48f18e28-85ff-4bc0-a886-6f00836e6845="" data-r-1_1_0_0_1_48f18e28-85ff-4bc0-a886-6f00836e6845="" class="text sd appear">{formattedDate}</p>
             </div>
           </div>
           <img data-s-62d72e00-aa4d-4b93-8853-3f172b48fec0="" class="sd" alt="" src={item.default.cover} loading="lazy" />
           <div data-s-b31bf582-5f6b-4cc6-9aa7-3ddc96726941="" class="richText sd">
-            <Fragment set:html={item.default.body} />
+            <Fragment set:html={body} />
           </div>
         </div>
         <section data-s-5d349948-d194-4e45-a18e-800c8c7d5631="" class="section sd appear">
