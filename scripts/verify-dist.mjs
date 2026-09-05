@@ -1,7 +1,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const distDir = path.resolve('dist');
+const distDir = fs.existsSync(path.resolve('dist/client'))
+  ? path.resolve('dist/client')
+  : path.resolve('dist');
 
 function walk(dir) {
   let files = [];
