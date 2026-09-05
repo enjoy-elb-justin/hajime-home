@@ -1,1 +1,0 @@
-import{ut as e}from"./DiFoSUVA.js";import{xt as t}from"./C7hSKfIO.js";function n(){let n=e(!1);return t()||(`ontouchstart`in window||navigator.maxTouchPoints>0||window.matchMedia(`(pointer:coarse)`).matches)&&(n.value=!0),{isTouchDevice:n}}export{n as t};
