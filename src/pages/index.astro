@@ -12,6 +12,15 @@ import NewsSection from '../components/NewsSection.astro';
 ---
 
 <Layout title={title} description={description} ogImage={ogImage}>
+<Fragment slot="head">
+  <link rel="preload" as="image" href="/images/hero/hero-bg.webp" media="(min-width: 841px)" fetchpriority="high" />
+  <link rel="preload" as="image" href="/images/hero/hero-bg-mobile.webp" media="(max-width: 840px)" fetchpriority="high" />
+</Fragment>
+<style is:global>
+  .sd[data-r-1_0_1_1_9c8c458c-36bf-441d-ab55-5563c20dd6a4]:before {
+    background-image: url("/images/hero/hero-bg-mobile.webp");
+  }
+</style>
 <div class="container"><style is:global>br[data-bp~="base:0"]{display:none;}
 br[data-bp~="base:1"]{display:inline;}
 @media screen and (max-width: 1060px){

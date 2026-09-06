@@ -39,6 +39,9 @@ export function initHomeSplash(root: ParentNode = document) {
 
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
+      // The head-level class only protects the first paint. Keeping it any longer
+      // would override the final opacity values and postpone the cross-fade.
+      document.documentElement.classList.remove('home-splash-pending');
       loader.classList.add('appear-active');
       content.classList.add('appear-active');
       loader.classList.remove('appear');

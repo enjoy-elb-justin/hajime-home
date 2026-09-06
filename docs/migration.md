@@ -1,9 +1,9 @@
 # HAJIME 官网交互与动画迁移审计
 
-> 审计日期：2026-09-05  
+> 审计日期：2026-09-05；实施复测：2026-09-06
 > 线上基准：<https://hajime-jp.co.jp/>  
 > 本地基准：Git `ffdcb60`，Astro 开发服务器  
-> 本文记录问题、原站机制、迁移方案与实施状态。文中列出的交互、动画、联系表单与 Cloudflare bindings 已在 2026-09-05 的后续实施中完成；尚未执行生产部署或真实邮件投递。
+> 本文记录问题、原站机制、迁移方案与实施状态。文中列出的交互、动画、联系表单与 Cloudflare bindings 已完成；尚未执行生产部署。开发环境的 Brevo 连通性测试邮件已经真实投递成功。
 
 ## 1. 结论与实施顺序
 
@@ -127,9 +127,19 @@ const parentItem = btn.closest('.sd');
 - 后端重新校验全部必填字段、长度、email、tel、咨询类型和隐私同意；浏览器原生校验与客户端错误提示只负责体验。
 - 管理员通知发送到 `info@hajime-jp.co.jp`，其 Reply-To 为咨询者邮箱；管理员邮件成功后，再给咨询者发送受理确认。
 - 发件人按当前约定设为 `HAJIMEコンサルティング株式会社 <notify@hajime-jp.co.jp>`。
+- 管理员通知和用户确认邮件共用同一份字段清单，完整回显企业名/组织名、姓、名、电话、邮箱、咨询类型、咨询内容及隐私政策同意状态；HTML 与纯文本版本一致，所有用户输入在进入 HTML 前均转义。
+- 共用字段表还会记录服务端受付时间（JST 与 UTC）、浏览器及版本、OS、设备类别、浏览器语言、时区、视口、画面尺寸和 Cloudflare 提供的国家/地区/城市概算信息。浏览器信息只使用请求头与低熵 Client Hints，不请求定位权限，也不采集 IP、经纬度、Canvas、字体列表等指纹数据。
+- 联系表单在提交按钮前明确提示上述环境信息的取得目的；客户端字段仅作为参考，权威受付时间由 Worker 在收到请求时生成。Cloudflare 地理信息在本地开发或平台无法判定时显示“取得できません”，不会阻塞邮件发送。
 - 成功后才 303/客户端跳转 `/contact/thanks`；失败会停留原页并恢复提交按钮。
 - 已增加 honeypot、同源检查、32 KiB 请求体上限、10 秒上游超时和重复点击锁；日志只记录随机 request id 与邮件 message id，不记录表单个人信息。
 - `BREVO_API_KEY` 只从 Worker secret 读取；`.dev.vars.example` 只提供占位配置，真实密钥不进入 Git。
+
+另新增开发环境专用的 `POST /api/test-email`（`src/pages/api/test-email.ts`）：
+
+- 收件人固定为 `enjoy.elb.justin@gmail.com`，不接受请求参数指定任意地址。
+- 只有 `CONTACT_RECIPIENT_EMAIL` 和 `CONTACT_REPLY_TO_EMAIL` 都等于该测试地址时才允许发送。
+- 仅在 Astro 开发模式启用，生产构建中调用会返回 404；同时保留同源检查。
+- 2026-09-05 本地实投成功，Brevo message ID 为 `<202609050940.42326957126@smtp-relay.mailin.fr>`，request ID 为 `a7df4861-a559-4b55-a254-5c9285b8c2c4`。
 
 部署前需要先确保 `notify@hajime-jp.co.jp` 已在 Brevo 验证，并在首次包含 Worker 代码的版本部署成功后执行：
 
@@ -156,7 +166,11 @@ pnpm wrangler secret put BREVO_API_KEY
 
 ### 实施状态
 
-已新增 `src/scripts/appear.ts`。共享 observer 为每个节点维护 `pending / running / done` 状态，首次进入视口后解除观察并按原站的双 `requestAnimationFrame` 顺序显现；不支持 observer、无 JS 与 reduced motion 时均直接显示内容。首页 splash 的两个专用节点从通用 observer 中排除，避免两套状态机竞争。
+已新增 `src/scripts/appear.ts`。迁移快照中许多真正的动画目标已经丢失 `.appear` class，因此现在不再只查询 DOM 中残留的 `.appear`：脚本会读取同源 CSSOM，从含 `.appear` 且定义了 `opacity / transform / translate / scale / color` 起始值的规则反推出目标 selector，并在第一次绘制前恢复起始状态。
+
+`Layout.astro` 在 `<head>` 最早阶段加入 `motion-preparing`，非首页会暂时隐藏站点根节点，直到所有起始 keyframe 完成采样，从而避免“完整内容闪现一帧后才消失”。目标进入视口后通过共享 `IntersectionObserver` 触发一次性 Web Animations 动画，并沿用原 CSS 的 delay、duration 和 easing；每个节点保留 `pending / running / done` 调试状态。不支持 observer/WAAPI、无 JS 或 reduced motion 时直接显示最终内容。
+
+首页 splash 的两个专用节点从通用 observer 中排除，避免两套状态机竞争。线上与本地逐页比对也确认：新闻详情首屏和客户案例的正文区域原本就是直接显示（客户案例仅下方关联列表有滚动显现），因此没有人为给正文添加与原站不一致的动画；自定义 404 页面则补充了 100–460ms 错峰、700ms 的淡入上移效果。
 
 ### 迁移前状态
 
@@ -194,18 +208,18 @@ pnpm wrangler secret put BREVO_API_KEY
 
 这个双 `requestAnimationFrame` 顺序很重要，它让浏览器先提交起始样式，再按原 CSS 的 delay、duration 和 easing 过渡到最终样式。
 
-### 推荐迁移方案
+### 当前迁移方案
 
-建立 `src/scripts/appear.ts`，用一个共享 `IntersectionObserver` 管理全页元素，行为保持与原站一致：
+`src/scripts/appear.ts` 用一个共享 `IntersectionObserver` 管理全页元素，行为保持与原站一致：
 
-- 不要仅对当前残留的 `.appear` 做观察。先按现有 `.appear` CSS 对应的 `data-s-*` 选择器建立一份明确目标清单，并保证目标元素在服务端 HTML 中带起始状态。否则首屏会先闪现最终状态，再被 JS 拉回起点。
-- 进入视口时 `unobserve`，用两帧完成 `appear → appear-active → final`。
+- 不仅观察当前残留的 `.appear`，而是从 CSSOM 自动提取目标；随机 `data-s-*` selector 仍由现有 STUDIO CSS 提供，无需再维护第二份易过期的清单。
+- 进入视口时立即 `unobserve`，以采样后的起始/最终 keyframe 重放原 CSS 时序。
 - 不支持 `IntersectionObserver` 或脚本异常时，立即清除起始状态，不能让内容永久透明。
 - `prefers-reduced-motion: reduce` 时直接显示最终状态。
 - accordion 内部隐藏元素可以继续被 observer 管理；展开后进入视口再触发即可。
-- 为自动化测试提供稳定标记，例如 `data-appear-state="pending|running|done"`，不要再让测试依赖随机的 STUDIO hash。
+- 自动化测试使用 `data-appear-state="pending|running|done"`，不依赖动画完成后的 class 残留。
 
-建议先复用现有 161 条 CSS 以获得最高视觉还原度，验证完成后再逐步把真正使用的动画整理进公共样式。不要第一步就重写所有动画参数。
+当前继续复用现有 CSS 以获得最高视觉还原度；后续若重构随机 selector，应先建立逐页视觉回归基准。
 
 ### 验收标准
 
@@ -460,17 +474,18 @@ data-mobile-nav
 - 已在浏览器中对线上与本地 FAQ、首页 loader、首页 carousel、桌面下拉菜单和移动菜单进行行为对照。
 - 已直接检查线上 Nuxt/STUDIO runtime 中的 `ToggleRenderer` 与 `IntersectionObserver` 逻辑；本文方案优先复刻其机制。
 - 18 个 accordion 已在真实浏览器覆盖鼠标、Enter、Space、单组单开、快速切换后的高度清理与 ARIA/inert 同步。
-- 首页硬刷新时记录到 0/700/1850ms 的 logo 可见且正文不可交互，约 2700ms loader 已 `hidden + display:none`、正文解除 inert；轮播也通过跨越循环边界后的索引归一验证。
+- 首页硬刷新在 Chrome 中记录到：0ms logo 完全可见且正文透明/inert；约 1700ms logo 与正文开始交叉淡变；约 2250ms 正文接近完全可见；约 2600ms loader 已 `hidden + display:none`、正文解除 inert。轮播也通过跨越循环边界后的索引归一验证。
 - 移动菜单在 390×844 视口通过打开、滚动锁、背景 inert、Escape 关闭和焦点归还；滚动显现的 pending 数会随锚点滚动下降，返回区域不会重新注册。
-- `pnpm astro check` 为 0 error / 0 warning / 0 hint，`NODE_OPTIONS=--trace-deprecation pnpm build` 完整通过，浏览器控制台无 error/warning。
-- `pnpm wrangler deploy --dry-run` 确认产物包含 13 个 Worker 模块、`/api/contact` 动态路由、370 个静态资产，以及 `ASSETS`、`R2_ASSETS`、`KV`、`SESSION`、`IMAGES` 和联系表单 vars；部署目标不再是纯静态资产 Worker。
-- 本地 API 验证覆盖：缺少必填字段返回 400、honeypot 静默成功、跨站 POST 被 Astro/Cloudflare origin 检查拒绝。真实 Brevo 投递需配置生产 `BREVO_API_KEY` 后再做端到端测试。
+- Chrome 全路由扫描覆盖首页、FAQ、公司、业务列表/三个详情、新闻列表、客户案例列表、联系/完成、隐私和 404；所有应有动画的模板均出现 `pending → running → done`，新闻详情与客户案例正文保持原站的静态首屏行为，客户案例下方关联列表仍按视口触发。404 的四项内容也完成错峰状态验证。
+- `pnpm astro check` 为 0 error / 0 warning / 0 hint，`pnpm build` 完整生成 20 个静态路由和 Worker server，浏览器控制台无 error/warning。
+- `pnpm wrangler deploy --dry-run` 确认产物包含 15 个 Worker 模块、`/api/contact` 与开发测试端点、370 个静态资产，以及 `ASSETS`、`R2_ASSETS`、`KV`、`SESSION`、`IMAGES` 和联系表单 vars；部署目标不再是纯静态资产 Worker。
+- 本地 API 验证覆盖：缺少必填字段返回 400、honeypot 静默成功、跨站 POST 被 Astro/Cloudflare origin 检查拒绝；开发测试 API 已完成一次真实 Brevo 投递。生产联系表单仍应在部署后用非敏感测试内容做一次端到端验收。
 
 ### 13.1 Node `DEP0169` 警告
 
 `NODE_OPTIONS=--trace-deprecation pnpm outdated` 将警告定位到 Corepack 缓存的 pnpm 9.15.4：其鉴权配置解析函数 `toNerfDart()` 仍调用 Node 的 `url.parse()`。这不是 Astro 页面代码或联系表单 Worker 的调用。
 
-项目现已在 `package.json` 固定 `packageManager: "pnpm@10.34.5"`。重新安装依赖后，带 `--trace-deprecation` 的 `pnpm outdated`、`pnpm astro check`、`pnpm build` 与 Wrangler dry-run 均不再输出 `DEP0169`。不要通过 `NODE_NO_WARNINGS` 隐藏问题；新机器应启用 Corepack，让项目声明自动选择该版本。
+项目现已在 `package.json` 固定到 pnpm 12.3.4。重新安装依赖后，带 `--trace-deprecation` 的 `pnpm outdated`、`pnpm astro check`、`pnpm build` 与 Wrangler dry-run 均不再输出 `DEP0169`。不要通过 `NODE_NO_WARNINGS` 隐藏问题；新机器应启用 Corepack，让项目声明自动选择该版本。
 
 ## 14. Cloudflare R2 与 Workers Static Assets
 
@@ -624,3 +639,31 @@ ASSETS: Fetcher;
 与 R2 一样，Wrangler 对 KV 的本地访问默认落在本地存储。配置中不加 `"remote": true`，避免开发过程误写生产 namespace；需要检查线上 key 时，应使用显式带 `--remote` 的只读命令。
 
 本次实际运行 `pnpm wrangler deploy --dry-run` 已确认：`env.KV` 指向 `4594963162ef42a392ae4592ba1af62b`，`env.R2_ASSETS` 指向 `hajime-home-storage`，同时 `env.ASSETS` 与联系表单 vars 均保留。
+
+## 15. 移动端页面与素材回归（2026-09-06）
+
+### 15.1 首页移动端首屏背景
+
+首页从 STUDIO 迁移时只保留了桌面首屏背景。原有响应式 CSS 会在 `840px` 及以下隐藏桌面图片层，并显示专用移动图片层，但后者的 `background-image` 声明为空，因此移动端显示成白底，白色标题也几乎不可见。
+
+已从原站找到并本地化原始移动端素材：
+
+- 原始尺寸：`788 × 1800`
+- 本地路径：`/images/hero/hero-bg-mobile.webp`
+- 原站裁切参数：`background-size: cover`、`background-position: center bottom`、`filter: brightness(0.85)`
+- 响应式切换点：`max-width: 840px`
+
+首页现在分别按媒体条件预加载桌面与移动端首屏图，避免 CSS 背景作为 LCP 资源时被浏览器发现过晚；移动端不会额外下载桌面大图。
+
+### 15.2 favicon
+
+页面原本只声明 `/images/common/favicon.png`，而浏览器或外部工具仍会直接请求标准路径 `/favicon.ico`，导致 404。现已由原站同款图标生成有效的 32×32 ICO 文件并放到 `/public/favicon.ico`，同时在全局 Layout 中显式声明。部署后以下两个地址都应返回 200：
+
+- `/favicon.ico`
+- `/images/common/favicon.png`
+
+### 15.3 移动端全路由检查
+
+使用 `440 × 956` 视口检查了全部静态与动态页面：`/`、`/company`、`/service`、三个 service 详情、`/news`、四个 news 详情、`/voice`、三个 voice 详情、`/faq`、`/contact`、`/contact/thanks`、`/privacy` 和 404 页面。
+
+检查项目包括：页面渲染完成状态、横向溢出、破损 `<img>`、空链接、可见但没有图片来源的 CSS 背景层，以及主要内容区尺寸。除已修复的首页移动背景外，未发现其他缺失图片、横向溢出或空链接。修复后再次扫描 20 个路由无失败项；FAQ 可通过键盘展开并正确同步 `aria-expanded/aria-hidden`，移动菜单可正常打开、关闭并归还状态，联系表单的可见控件均保持在视口内。

@@ -19,6 +19,14 @@ import Footer from '../../components/Footer.astro';
     line-height: 1.6;
     text-align: center;
   }
+  .contact-environment-note {
+    width: 100%;
+    margin: -4px 0 0;
+    color: #666666;
+    font-size: 12px;
+    line-height: 1.7;
+    text-align: left;
+  }
   form[data-contact-form][aria-busy="true"] button[type="submit"] {
     cursor: wait;
     opacity: 0.6;
@@ -491,6 +499,50 @@ br[data-bp~="@mini:1"]{display:inline;}
   const form = document.querySelector<HTMLFormElement>('form[data-contact-form]');
   const status = document.getElementById('contact-form-status');
 
+  if (form && !document.getElementById('contact-environment-note')) {
+    const environmentNote = document.createElement('p');
+    environmentNote.id = 'contact-environment-note';
+    environmentNote.className = 'contact-environment-note';
+    environmentNote.textContent = '送信時に、受付日時、ブラウザ・OS、言語、タイムゾーン、画面サイズ、およびCloudflareによる概算地域情報を、お問い合わせ対応と不具合調査のため取得します。IPアドレスや正確な位置情報はメールに記載しません。';
+    form.insertBefore(environmentNote, form.querySelector('button[type="submit"]'));
+  }
+
+  interface NavigatorWithUserAgentData extends Navigator {
+    userAgentData?: {
+      mobile?: boolean;
+      platform?: string;
+    };
+  }
+
+  const buildContactPayload = (contactForm: HTMLFormElement): FormData => {
+    const payload = new FormData(contactForm);
+    const navigatorData = navigator as NavigatorWithUserAgentData;
+    let timezone = '';
+
+    try {
+      timezone = Intl.DateTimeFormat().resolvedOptions().timeZone ?? '';
+    } catch {
+      // The server can fall back to Cloudflare's coarse request timezone.
+    }
+
+    payload.set('_client_language', navigator.language ?? '');
+    payload.set('_client_timezone', timezone);
+    payload.set('_client_viewport', `${window.innerWidth} × ${window.innerHeight}`);
+    payload.set(
+      '_client_screen',
+      `${window.screen.width} × ${window.screen.height} @ ${window.devicePixelRatio || 1}x`,
+    );
+    payload.set('_client_platform', navigatorData.userAgentData?.platform ?? '');
+    payload.set(
+      '_client_mobile',
+      typeof navigatorData.userAgentData?.mobile === 'boolean'
+        ? String(navigatorData.userAgentData.mobile)
+        : '',
+    );
+
+    return payload;
+  };
+
   form?.addEventListener('submit', async (event) => {
     if (!form.checkValidity()) {
       event.preventDefault();
@@ -514,7 +566,7 @@ br[data-bp~="@mini:1"]{display:inline;}
       const response = await fetch(form.action, {
         method: 'POST',
         headers: { Accept: 'application/json' },
-        body: new FormData(form),
+        body: buildContactPayload(form),
       });
       let result: unknown = null;
       try {
